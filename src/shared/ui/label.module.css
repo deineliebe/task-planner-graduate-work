@@ -1,0 +1,7 @@
+.label {
+	gap: 0;
+	width: 320px;
+	height: 32px;
+	padding: 6px 12px;
+	border-radius: 6px;
+}

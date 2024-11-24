@@ -1,0 +1,77 @@
+.project {
+	display: grid;
+	grid-template-columns: 46px 36px 48px 298px 44px 150px 200px 100px 260px 140px auto;
+	align-items: center;
+	block-size: 100%;
+	padding: 0 10px;
+	color: #171c26;
+	font-weight: 400;
+	font-size: 14px;
+}
+
+.project:has(input[type='checkbox']:checked) {
+	background-color: #ededfc;
+}
+
+.project-name {
+	text-decoration: none;
+	outline: none;
+}
+
+.project-name:hover {
+	text-decoration: underline;
+}
+
+.project-name:focus {
+	text-decoration: underline;
+}
+
+.project-project-manager {
+	display: flex;
+	align-items: center;
+	box-sizing: border-box;
+	width: 24px;
+	height: 24px;
+	color: #5e5adb;
+	font-weight: 600;
+	font-size: 10px;
+	text-align: center;
+	background: #ededfc;
+	border: 1px solid rgb(210 213 220 / 50%);
+	border-radius: 6px;
+	place-content: center;
+}
+
+.project-update {
+	display: flex;
+	flex-direction: row;
+	gap: 6px;
+}
+
+.project-resorces {
+	display: flex;
+	padding: 2px 7px;
+	background: #e9edf5;
+	border-radius: 6px;
+	place-self: center;
+}
+
+.project-resources-empty {
+	padding: 5px;
+	border: 1px dashed #807cea;
+}
+
+.project-timeline {
+	display: flex;
+	flex-direction: row;
+}
+
+.project-timeline-date {
+	width: 98px;
+	padding: 1px 8px;
+	padding: 1px 0;
+	text-align: center;
+	vertical-align: middle;
+	background: #e9edf5;
+	border-radius: 4px;
+}

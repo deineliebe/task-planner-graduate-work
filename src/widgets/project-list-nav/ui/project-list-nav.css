@@ -1,0 +1,23 @@
+.project-list-nav {
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	align-items: center;
+	block-size: 100%;
+	padding: 8px 10px;
+	color: #687182;
+	font-weight: 500;
+	font-size: 12px;
+	text-transform: uppercase;
+	background: #f7f9fccc;
+	outline-offset: 1px solid #e9edf5;
+}
+
+.project-list-nav-info {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+input[type='checkbox']:checked + span[class='project-list-nav-checkbox'] {
+	background-image: url('./../../../shared/lib/icons/Checkbox.svg');
+}

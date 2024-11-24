@@ -1,0 +1,93 @@
+.page {
+	--gray-rgb: 0, 0, 0;
+	--gray-alpha-200: rgba(var(--gray-rgb), 0.08);
+	--gray-alpha-100: rgba(var(--gray-rgb), 0.05);
+	--button-primary-hover: #383838;
+	--button-secondary-hover: #f2f2f2;
+	cursor: url('../lib/icons/Arrow.svg'), auto;
+}
+
+.select {
+	display: flex;
+	color: inherit;
+	font: inherit;
+	background-image: url('../../shared/lib/icons/down.svg');
+	background-repeat: no-repeat;
+	background-position: center right;
+	border: none;
+	outline: none;
+	appearance: none;
+}
+
+.select option {
+	display: flex;
+	gap: 8px;
+	padding: 4px 10px;
+	text-align: center;
+}
+
+.select option:hover {
+	position: relative;
+	background: #5e5adb;
+	border-radius: 4px;
+}
+
+.isClicked {
+	cursor: url('../lib/icons/Clicker.svg'), auto;
+}
+
+.isShadowed:focus {
+	outline: none;
+	box-shadow: 0 0 0 4px #5e5adb66;
+}
+
+.white:focus {
+	color: #171c26;
+}
+
+.white:disabled {
+	color: #868fa0;
+	background-color: #f7f9fc;
+}
+
+.red {
+	color: #ffffff;
+	background-color: #d1293d;
+}
+
+.red:hover {
+	background-color: #d1293d;
+}
+
+.red:disabled {
+	color: #fcc5cb;
+	background-color: #f76f7f;
+}
+
+.blue {
+	color: #ffffff;
+	background-color: #5e5adb;
+}
+
+.blue:hover {
+	background-color: #4945c4;
+}
+
+.blue:disabled {
+	color: #ededfc;
+	background-color: #9e9bf5;
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	white-space: nowrap;
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+}
+
+.upperCase {
+	text-transform: uppercase;
+}

@@ -1,0 +1,45 @@
+.button {
+	gap: 8px;
+	color: var(--button-test-color);
+	background: var(--button-common-color);
+	border: none;
+	border-radius: 4px;
+	box-shadow:
+		0 1px 1px rgb(0 0 0 / 10%),
+		0 0 0 1px rgb(70 79 96 / 16%);
+	cursor: url('../lib/icons/Arrow.svg'), auto;
+}
+
+.button:active {
+	box-shadow:
+		0 1px 1px rgb(0 0 0 / 10%),
+		0 0 0 1px rgb(70 79 96 / 32%);
+}
+
+.button-small {
+	padding: 2px 4px;
+}
+
+.button-medium {
+	padding: 2px 8px;
+}
+
+.button-large {
+	padding: 6px 12px;
+}
+
+.button-small-plus {
+	padding: 2px 4px;
+	padding-left: 36px;
+	background-image: url('../lib/icons/add-white.svg');
+	background-repeat: no-repeat;
+	background-position: 2px 50%;
+}
+
+.button-large-plus {
+	padding: 6px 12px;
+	padding-left: 36px;
+	background-image: url('../lib/icons/add-white.svg');
+	background-repeat: no-repeat;
+	background-position: 12px 50%;
+}

@@ -1,0 +1,28 @@
+.tab {
+	font-weight: 700;
+	letter-spacing: 0.02em;
+}
+
+.tab:active {
+	color: #5e5adb;
+	text-decoration: underline 2px;
+}
+
+.tab-underlined {
+	color: #171c26;
+	text-decoration: underline 2px;
+}
+
+.tab-simple:active {
+	color: #464f60;
+}
+
+.tab-numbers {
+	gap: 10px;
+	width: 29px;
+	height: 16px;
+	padding: 0 6px;
+	color: #5a6376;
+	background: #e9edf5;
+	border-radius: 13px;
+}
