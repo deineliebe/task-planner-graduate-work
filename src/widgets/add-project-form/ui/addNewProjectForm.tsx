@@ -30,9 +30,12 @@ const AddNewFormUI: FC<AddNewFormProps> = ({ projects }) => {
 			id: projects.length + 1,
 			name: (document.getElementById('project_name') as HTMLInputElement)
 				?.value,
-			status: 'To Do',
-			last_update: new Date(),
-			column: 0
+			status: (
+				document.body.querySelector(
+					`.${formStyles['form-button-in-bar-active']}`
+				) as HTMLButtonElement
+			)?.innerText,
+			last_update: new Date()
 		};
 		const newProjects: TProject[] = [];
 		projects.forEach((project) => {

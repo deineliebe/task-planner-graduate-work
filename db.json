@@ -1,0 +1,38 @@
+{
+  "projects": {
+    "data": [
+      {
+        "id": 1,
+        "name": "test",
+        "status": "To Do",
+        "last_update": "2025-01-04T17:51:32.439Z"
+      },
+      {
+        "id": 2,
+        "name": "wefew",
+        "last_update": "2025-01-04T18:13:00.196Z"
+      }
+    ],
+    "success": true
+  },
+  "users": {
+    "data": [
+      {
+        "name": "Roger Vaccaro"
+      },
+      {
+        "name": "Tatiana Dias"
+      },
+      {
+        "name": "Leo Gouse"
+      }
+    ],
+    "success": true
+  },
+  "profile": {
+    "data": {
+      "name": "Tatiana Dias"
+    },
+    "success": true
+  }
+}

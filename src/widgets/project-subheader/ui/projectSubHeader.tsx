@@ -13,19 +13,14 @@ const ProjectSubHeader: FC<ProjectSubHeaderProps> = ({ setShowModal }) => {
 			<div className='subheader-upper-part'>
 				<div className='subheader-selected'>
 					<button
-						className={`${buttonStyles.button} ${styles.isShadowed} ${styles.isClicked} subheader-calendar-button`}
+						className={`${buttonStyles.button} ${styles.blue} ${styles.isShadowed} ${styles.isClicked}`}
 					>
 						<p>Tasks</p>
 					</button>
 					<button
-						className={`${buttonStyles.button} ${styles.isShadowed} ${styles.isClicked} subheader-calendar-button`}
+						className={`${buttonStyles.button} ${styles.blue} ${styles.isShadowed} ${styles.isClicked}`}
 					>
 						<p>Notes</p>
-					</button>
-					<button
-						className={`${buttonStyles.button} ${styles.isShadowed} ${styles.isClicked} subheader-calendar-button`}
-					>
-						<p>Chat</p>
 					</button>
 				</div>
 				<button

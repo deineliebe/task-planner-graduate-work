@@ -1,5 +1,6 @@
 export type ProjectCardUIProps = {
 	projectInfo: TProjectInfo;
+	deleteProject: (id: number) => void;
 };
 
 type TProjectInfo = {

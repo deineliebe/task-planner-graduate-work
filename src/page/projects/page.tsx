@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from '@/shared/lib/store/store';
 import {
+	addProject,
 	getLoadingStatus,
 	getProjectData,
 	getProjects
@@ -23,6 +24,14 @@ const Projects: FC = () => {
 	const projectsIds: number[] = [];
 	projects.map((project) => projectsIds.push(project.id));
 	const [showAddProjectModal, setShowAddProjectModal] = useState(false);
+	const deleteProject = (id: number) => {
+		const newProjects: TProject[] = [];
+		projects.forEach((project) => {
+			if (project.id !== id) newProjects.push(project);
+			console.log(project);
+		});
+		dispatch(addProject(newProjects));
+	};
 
 	return (
 		<>
@@ -31,7 +40,7 @@ const Projects: FC = () => {
 			<ProjectsListNav />
 			{!areProjectsLoading && (
 				<>
-					<ProjectsList projects={projects} />
+					<ProjectsList projects={projects} deleteProject={deleteProject} />
 				</>
 			)}
 			{showAddProjectModal && (
