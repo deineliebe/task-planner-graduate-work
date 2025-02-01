@@ -6,9 +6,8 @@
 	justify-content: space-between;
 	inline-size: 100%;
 	block-size: var(--header-width);
-	color: #222834;
-	background: #a4e6fa;
-	border: 1px solid #14c8ff;
+	color: var(--header-accent-color);
+	background: var(--header-main-color);
 }
 
 .header-avatar {

@@ -4,12 +4,10 @@
 	align-items: center;
 	block-size: 100%;
 	padding: 8px 10px;
-	color: #687182;
+	color: var(--text-additional-color);
 	font-weight: 500;
 	font-size: 12px;
 	text-transform: uppercase;
-	background: #f7f9fccc;
-	outline-offset: 1px solid #e9edf5;
 }
 
 .project-list-nav-info {

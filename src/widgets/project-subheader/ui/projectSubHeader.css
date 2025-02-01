@@ -12,11 +12,6 @@
 	gap: 20px;
 }
 
-.subheader-upper-part-with-select {
-	grid-template-columns: min-content min-content min-content auto;
-	grid-template-areas: 'selected calendar search add-project';
-}
-
 .subheader-selected {
 	display: flex;
 	grid-area: 'selected';
@@ -24,66 +19,8 @@
 	gap: 10px;
 }
 
-.subheader-selected-text {
-	align-items: center;
-	color: #687182;
-	font-weight: 400;
-	white-space: nowrap;
-}
-
-.subheader-selected-select {
-	padding-right: 22px;
-}
-
-.subheader-selected-button {
-	align-content: center;
-	padding: 0;
-	background-color: transparent;
-	border: none;
-}
-
-.subheader-calendar-button {
-	grid-area: 'calendar';
-	padding: 8px 12px;
-}
-
-.subheader-input {
-	display: flex;
-	grid-area: 'search';
-	justify-self: start;
-}
-
-.subheader-search {
-	justify-self: start;
-	font-size: 14px;
-	border-radius: 0 6px 6px 0;
-	box-shadow:
-		0 1px 2px rgb(0 0 0 / 6%),
-		0 0 0 1px rgb(134 143 160 / 16%);
-	padding-block: 6px;
-}
-
-.subheader-filter-block {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	gap: 8px;
-	padding: 8px 12px;
-	color: #464f60;
-	font-size: 14px;
-	border-radius: 6px 0 0 6px;
-	box-shadow:
-		0 1px 1px rgb(0 0 0 / 10%),
-		0 0 0 1px rgb(70 79 96 / 16%);
-}
-
-.subheader-filter-select {
-	padding-right: 26px;
-}
-
 .subheader-add-button {
 	grid-area: 'add-project';
 	justify-self: end;
-	background-color: #5e5adb;
+	background-color: var(--button-active-color);
 }

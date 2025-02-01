@@ -1,9 +1,4 @@
 .page {
-	--gray-rgb: 0, 0, 0;
-	--gray-alpha-200: rgba(var(--gray-rgb), 0.08);
-	--gray-alpha-100: rgba(var(--gray-rgb), 0.05);
-	--button-primary-hover: #383838;
-	--button-secondary-hover: #f2f2f2;
 	cursor: url('../lib/icons/Arrow.svg'), auto;
 }
 
@@ -19,63 +14,33 @@
 	appearance: none;
 }
 
-.select option {
-	display: flex;
-	gap: 8px;
-	padding: 4px 10px;
-	text-align: center;
-}
-
-.select option:hover {
-	position: relative;
-	background: #5e5adb;
-	border-radius: 4px;
-}
-
 .isClicked {
 	cursor: url('../lib/icons/Clicker.svg'), auto;
 }
 
+.isShadowed {
+	transition: all 0.3s ease-out;
+}
+
 .isShadowed:focus {
 	outline: none;
-	box-shadow: 0 0 0 4px #5e5adb66;
-}
-
-.white:focus {
-	color: #171c26;
-}
-
-.white:disabled {
-	color: #868fa0;
-	background-color: #f7f9fc;
-}
-
-.red {
-	color: #ffffff;
-	background-color: #d1293d;
-}
-
-.red:hover {
-	background-color: #d1293d;
-}
-
-.red:disabled {
-	color: #fcc5cb;
-	background-color: #f76f7f;
+	box-shadow: 0 0 0 4px var(--button-shadow);
 }
 
 .blue {
-	color: #ffffff;
-	background-color: #5e5adb;
+	color: var(--text-main-color);
+	background-color: var(--button-active-color);
+	transition: all 0.5s ease-out;
 }
 
 .blue:hover {
-	background-color: #4945c4;
+	color: var(--button-common-color);
+	background-color: var(--button-blue-hover);
 }
 
 .blue:disabled {
-	color: #ededfc;
-	background-color: #9e9bf5;
+	color: var(--text-main-color);
+	background-color: var(--button-active-color);
 }
 
 .visually-hidden {

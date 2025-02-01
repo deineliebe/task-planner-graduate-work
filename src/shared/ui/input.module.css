@@ -13,7 +13,7 @@
 }
 
 .input:disabled {
-	background: #f7f9fc;
+	background: var(--section-color);
 	box-shadow: 0 0 0 1px rgb(134 143 160 / 24%);
 }
 

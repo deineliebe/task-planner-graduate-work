@@ -4,7 +4,7 @@
 	place-content: space-between;
 	block-size: 100%;
 	padding: 0 10px;
-	color: #171c26;
+	color: var(--text-heading-color);
 	font-weight: 400;
 	font-size: 14px;
 	background-color: white;
