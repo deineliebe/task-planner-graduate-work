@@ -7,6 +7,7 @@
 .project-list {
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
+	overflow-wrap: anywhere;
 	align-items: center;
 	block-size: 100%;
 	padding: 8px 10px;
