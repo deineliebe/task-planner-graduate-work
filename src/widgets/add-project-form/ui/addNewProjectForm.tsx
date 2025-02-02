@@ -12,16 +12,27 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 type AddNewFormProps = {
 	projects: TProject[];
+	setShowModal: (showModal: boolean) => void;
 };
 
-const AddNewFormUI: FC<AddNewFormProps> = ({ projects }) => {
+const AddNewFormUI: FC<AddNewFormProps> = ({ projects, setShowModal }) => {
 	const onStatusClick = (evt: React.MouseEvent) => {
+		document.body
+			.querySelector(`.${formStyles['form-button-in-bar-active']}`)
+			?.classList.add(`${buttonStyles.buttonCommon}`);
+		document.body
+			.querySelector(`.${formStyles['form-button-in-bar-active']}`)
+			?.classList.add(`${styles.isClicked}`);
 		document.body
 			.querySelector(`.${formStyles['form-button-in-bar-active']}`)
 			?.classList.remove(`${formStyles['form-button-in-bar-active']}`);
 		(evt?.target as HTMLElement)?.classList?.add(
 			`${formStyles['form-button-in-bar-active']}`
 		);
+		(evt?.target as HTMLElement)?.classList?.remove(
+			`${buttonStyles.buttonCommon}`
+		);
+		(evt?.target as HTMLElement)?.classList?.remove(`${styles.isClicked}`);
 	};
 	const dispatch = useDispatch();
 	const handleSubmit = (e: SyntheticEvent) => {
@@ -43,6 +54,7 @@ const AddNewFormUI: FC<AddNewFormProps> = ({ projects }) => {
 		});
 		newProjects.push(newProject);
 		dispatch(addProject(newProjects));
+		setShowModal(false);
 	};
 	return (
 		<>
@@ -80,35 +92,35 @@ const AddNewFormUI: FC<AddNewFormProps> = ({ projects }) => {
 						<div id='status' className={`${formStyles['form-buttons-bar']}`}>
 							<button
 								type='button'
-								className={`${formStyles['form-button-in-bar']} ${formStyles['form-button-in-bar-active']} ${styles.isShadowed} ${styles.isClicked}`}
+								className={`${formStyles['form-button-in-bar']} ${formStyles['form-button-in-bar-active']} ${buttonStyles.isShadowed}`}
 								onClick={onStatusClick}
 							>
 								To Do
 							</button>
 							<button
 								type='button'
-								className={`${formStyles['form-button-in-bar']} ${styles.isShadowed} ${styles.isClicked}`}
+								className={`${formStyles['form-button-in-bar']} ${buttonStyles.buttonCommon} ${buttonStyles.isShadowed} ${styles.isClicked}`}
 								onClick={onStatusClick}
 							>
 								In Progress
 							</button>
 							<button
 								type='button'
-								className={`${formStyles['form-button-in-bar']} ${styles.isShadowed} ${styles.isClicked}`}
+								className={`${formStyles['form-button-in-bar']} ${buttonStyles.buttonCommon} ${buttonStyles.isShadowed} ${styles.isClicked}`}
 								onClick={onStatusClick}
 							>
 								On Review
 							</button>
 							<button
 								type='button'
-								className={`${formStyles['form-button-in-bar']} ${styles.isShadowed} ${styles.isClicked}`}
+								className={`${formStyles['form-button-in-bar']} ${buttonStyles.buttonCommon} ${buttonStyles.isShadowed} ${styles.isClicked}`}
 								onClick={onStatusClick}
 							>
 								Done
 							</button>
 							<button
 								type='button'
-								className={`${formStyles['form-button-in-bar']} ${styles.isShadowed} ${styles.isClicked}`}
+								className={`${formStyles['form-button-in-bar']} ${buttonStyles.buttonCommon} ${buttonStyles.isShadowed} ${styles.isClicked}`}
 								onClick={onStatusClick}
 							>
 								Backlog
@@ -119,13 +131,13 @@ const AddNewFormUI: FC<AddNewFormProps> = ({ projects }) => {
 				<div className={`${formStyles['form-footer']}`}>
 					<button
 						type='reset'
-						className={`${buttonStyles.button} ${buttonStyles['button-large']} ${styles.white}`}
+						className={`${buttonStyles.button} ${buttonStyles.buttonLarge} ${buttonStyles.buttonCommon} ${buttonStyles.isShadowed} ${styles.isClicked}`}
 					>
 						Cancel
 					</button>
 					<button
 						type='submit'
-						className={`${buttonStyles.button} ${buttonStyles['button-large']} ${styles.blue}`}
+						className={`${buttonStyles.button} ${buttonStyles.buttonLarge} ${buttonStyles.buttonCommon} ${buttonStyles.isShadowed} ${styles.isClicked}`}
 					>
 						Add project
 					</button>

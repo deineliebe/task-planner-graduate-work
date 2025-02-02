@@ -18,31 +18,6 @@
 	cursor: url('../lib/icons/Clicker.svg'), auto;
 }
 
-.isShadowed {
-	transition: all 0.3s ease-out;
-}
-
-.isShadowed:focus {
-	outline: none;
-	box-shadow: 0 0 0 4px var(--button-shadow);
-}
-
-.blue {
-	color: var(--text-main-color);
-	background-color: var(--button-active-color);
-	transition: all 0.5s ease-out;
-}
-
-.blue:hover {
-	color: var(--button-common-color);
-	background-color: var(--button-blue-hover);
-}
-
-.blue:disabled {
-	color: var(--text-main-color);
-	background-color: var(--button-active-color);
-}
-
 .visually-hidden {
 	position: absolute;
 	width: 1px;

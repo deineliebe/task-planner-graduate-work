@@ -1,5 +1,6 @@
 import './header.css';
 import styles from '../../../shared/ui/styles.module.css';
+import buttonStyles from '../../../shared/ui/button.module.css';
 
 import { FC } from 'react';
 import { TProject } from '@/shared/model/types';
@@ -20,8 +21,16 @@ const Header: FC<HeaderProps> = () => (
 			</select>
 		</div>
 		<div className='header-block'>
-			<p>Settings</p>
-			<p>Sign in</p>
+			<button
+				className={`${buttonStyles.button} ${buttonStyles.buttonTransparent} ${buttonStyles.isShadowed} ${styles.isClicked}`}
+			>
+				Settings
+			</button>
+			<button
+				className={`${buttonStyles.button} ${buttonStyles.buttonTransparent} ${buttonStyles.isShadowed} ${styles.isClicked}`}
+			>
+				Sign in
+			</button>
 		</div>
 	</div>
 );

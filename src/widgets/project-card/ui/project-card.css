@@ -7,13 +7,8 @@
 	color: var(--text-heading-color);
 	font-weight: 400;
 	font-size: 14px;
-	background-color: white;
 }
 
-.project-name:hover {
-	text-decoration: underline;
-}
-
-.project-name:focus {
-	text-decoration: underline;
+.project-name {
+	color: var(--text-link-color);
 }

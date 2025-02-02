@@ -32,11 +32,16 @@ const Projects: FC = () => {
 		});
 		dispatch(addProject(newProjects));
 	};
+	const [page, setPage] = useState(0);
 
 	return (
 		<>
 			<Header projects={projects} />
-			<ProjectSubHeader setShowModal={setShowAddProjectModal} />
+			<ProjectSubHeader
+				setShowModal={setShowAddProjectModal}
+				page={page}
+				setPage={setPage}
+			/>
 			<ProjectsListNav />
 			{!areProjectsLoading && (
 				<>
@@ -48,7 +53,10 @@ const Projects: FC = () => {
 					title={'Add new project'}
 					onClose={() => setShowAddProjectModal(false)}
 				>
-					<AddNewForm projects={projects} />
+					<AddNewForm
+						projects={projects}
+						setShowModal={setShowAddProjectModal}
+					/>
 				</Modal>
 			)}
 		</>

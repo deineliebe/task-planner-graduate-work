@@ -7,28 +7,33 @@
 	box-shadow:
 		0 1px 1px rgb(0 0 0 / 10%),
 		0 0 0 1px rgb(70 79 96 / 16%);
-	cursor: url('../lib/icons/Arrow.svg'), auto;
+}
+
+.button:focus {
+	outline: none;
+}
+
+.button:hover {
+	outline: none;
 }
 
 .button:active {
-	box-shadow:
-		0 1px 1px rgb(0 0 0 / 10%),
-		0 0 0 1px rgb(70 79 96 / 32%);
+	outline: none;
 }
 
-.button-small {
+.buttonSmall {
 	padding: 2px 4px;
 }
 
-.button-medium {
+.buttonMedium {
 	padding: 2px 8px;
 }
 
-.button-large {
+.buttonLarge {
 	padding: 6px 12px;
 }
 
-.button-small-plus {
+.buttonSmallPlus {
 	padding: 2px 4px;
 	padding-left: 36px;
 	background-image: url('../lib/icons/add-white.svg');
@@ -36,10 +41,47 @@
 	background-position: 2px 50%;
 }
 
-.button-large-plus {
+.buttonLargePlus {
 	padding: 6px 12px;
 	padding-left: 36px;
 	background-image: url('../lib/icons/add-white.svg');
 	background-repeat: no-repeat;
 	background-position: 12px 50%;
+}
+
+.isShadowed {
+	transition: all 0.3s ease-out;
+}
+
+.isShadowed:focus {
+	outline: none;
+	box-shadow: 0 0 0 4px var(--button-shadow);
+}
+
+.buttonCommon {
+	color: var(--text-main-color);
+	background-color: var(--button-common-color);
+	transition: all 0.5s ease-out;
+}
+
+.buttonCommon:hover {
+	color: var(--background);
+	background-color: var(--button-common-hover);
+}
+
+.buttonCommon:active {
+	color: var(--background);
+	background-color: var(--button-common-hover);
+}
+
+.buttonDisabled {
+	cursor: url('../lib/icons/Arrow.svg'), auto;
+	color: var(--button-shadow);
+	background-color: var(--background);
+}
+
+.buttonTransparent {
+	background: transparent;
+	border: none;
+	color: inherit;
 }

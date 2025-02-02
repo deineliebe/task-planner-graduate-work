@@ -5,26 +5,42 @@ import { FC } from 'react';
 
 export type ProjectSubHeaderProps = {
 	setShowModal: (showModal: boolean) => void;
+	page: number;
+	setPage: (page: number) => void;
 };
 
-const ProjectSubHeader: FC<ProjectSubHeaderProps> = ({ setShowModal }) => {
+const ProjectSubHeader: FC<ProjectSubHeaderProps> = ({
+	setShowModal,
+	page,
+	setPage
+}) => {
 	return (
 		<section className='subheader'>
 			<div className='subheader-upper-part'>
 				<div className='subheader-selected'>
 					<button
-						className={`${buttonStyles.button} ${styles.blue} ${styles.isShadowed} ${styles.isClicked}`}
+						className={
+							page == 0
+								? `${buttonStyles.button} ${buttonStyles.buttonDisabled}`
+								: `${buttonStyles.button} ${buttonStyles.buttonCommon} ${buttonStyles.isShadowed} ${styles.isClicked}`
+						}
+						onClick={() => setPage(0)}
 					>
 						<p>Tasks</p>
 					</button>
 					<button
-						className={`${buttonStyles.button} ${styles.blue} ${styles.isShadowed} ${styles.isClicked}`}
+						className={
+							page == 1
+								? `${buttonStyles.button} ${buttonStyles.buttonDisabled}`
+								: `${buttonStyles.button} ${buttonStyles.buttonCommon} ${buttonStyles.isShadowed} ${styles.isClicked}`
+						}
+						onClick={() => setPage(1)}
 					>
 						<p>Notes</p>
 					</button>
 				</div>
 				<button
-					className={`${buttonStyles.button} ${styles.blue} ${styles.isShadowed} ${buttonStyles['button-large-plus']} ${styles.isClicked}`}
+					className={`${buttonStyles.button} ${buttonStyles.buttonCommon} ${buttonStyles.isShadowed} ${buttonStyles.buttonLargePlus} ${styles.isClicked}`}
 					onClick={() => setShowModal(true)}
 				>
 					<span>New project</span>

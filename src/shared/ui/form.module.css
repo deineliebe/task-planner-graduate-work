@@ -28,7 +28,6 @@
 .form-buttons-bar {
 	display: flex;
 	flex-direction: row;
-	align-items: center;
 	gap: 1px;
 	inline-size: fit-content;
 	padding: 2px;
@@ -47,6 +46,7 @@
 }
 
 .form-button-in-bar-active {
+	cursor: url('../lib/icons/Arrow.svg'), auto;
 	color: var(--button-active-color);
 	background: var(--white);
 	border-radius: 4px;
