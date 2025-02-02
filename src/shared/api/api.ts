@@ -1,5 +1,10 @@
-import { TProject } from '../model/types';
-import { TProfileResponse, TProjectsResponse, TUsersResponse } from './types';
+import { TNote, TProject } from '../model/types';
+import {
+	TNotesResponse,
+	TProfileResponse,
+	TProjectsResponse,
+	TUsersResponse
+} from './types';
 
 const URL = 'http://localhost:3001';
 
@@ -26,6 +31,31 @@ export const addProjectsApi = (data: TProject[]) =>
 		})
 	})
 		.then((res) => checkResponse<TProjectsResponse>(res))
+		.then((data) => {
+			if (data?.success) return data;
+			return Promise.reject(data);
+		});
+
+export const getNotesApi = () =>
+	fetch(`${URL}/notes`)
+		.then((res) => checkResponse<TNotesResponse>(res))
+		.then((data) => {
+			if (data?.success) return data;
+			return Promise.reject(data);
+		});
+
+export const addNotesApi = (data: TNote[]) =>
+	fetch(`${URL}/notes`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8'
+		} as HeadersInit,
+		body: JSON.stringify({
+			data: data,
+			success: true
+		})
+	})
+		.then((res) => checkResponse<TNotesResponse>(res))
 		.then((data) => {
 			if (data?.success) return data;
 			return Promise.reject(data);

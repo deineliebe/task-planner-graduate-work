@@ -6,13 +6,15 @@ import {
 	getProjectData,
 	getProjects
 } from '@/shared/lib/store/slices/projects';
+import { getNotesData } from '@/shared/lib/store/slices/notes';
 import { ProjectsList } from '@/widgets/project-list';
 import { Header } from '@/widgets/header';
 import { ProjectSubHeader } from '@/widgets/project-subheader';
 import { ProjectsListNav } from '@/widgets/project-list-nav';
-import { TProject } from '@/shared/model/types';
+import { TNote, TProject } from '@/shared/model/types';
 import { Modal } from '@/widgets/modal/model';
 import { AddNewForm } from '@/widgets/add-project-form';
+import AddNewNote from '@/widgets/add-note/ui/addNewNote';
 
 const Projects: FC = () => {
 	const dispatch = useDispatch();
@@ -32,33 +34,48 @@ const Projects: FC = () => {
 		});
 		dispatch(addProject(newProjects));
 	};
+
+	const notes: TNote[] = useSelector(getNotesData);
+	projects.map((project) => projectsIds.push(project.id));
+	const [showAddNoteModal, setShowAddNoteModal] = useState(false);
+
 	const [page, setPage] = useState(0);
 
 	return (
 		<>
 			<Header projects={projects} />
 			<ProjectSubHeader
-				setShowModal={setShowAddProjectModal}
+				setShowModal={page == 0 ? setShowAddProjectModal : setShowAddNoteModal}
 				page={page}
 				setPage={setPage}
+				phrase={page == 0 ? 'Add new project' : 'Add new note'}
 			/>
-			<ProjectsListNav />
-			{!areProjectsLoading && (
+			{page == 0 && <ProjectsListNav />}
+			{page == 0 && !areProjectsLoading && (
 				<>
 					<ProjectsList projects={projects} deleteProject={deleteProject} />
 				</>
 			)}
-			{showAddProjectModal && (
-				<Modal
-					title={'Add new project'}
-					onClose={() => setShowAddProjectModal(false)}
-				>
-					<AddNewForm
-						projects={projects}
-						setShowModal={setShowAddProjectModal}
-					/>
-				</Modal>
-			)}
+			{page == 0
+				? showAddProjectModal && (
+						<Modal
+							title={'Add new project'}
+							onClose={() => setShowAddProjectModal(false)}
+						>
+							<AddNewForm
+								projects={projects}
+								setShowModal={setShowAddProjectModal}
+							/>
+						</Modal>
+					)
+				: showAddNoteModal && (
+						<Modal
+							title={'Add new note'}
+							onClose={() => setShowAddProjectModal(false)}
+						>
+							<AddNewNote notes={notes} setShowModal={setShowAddNoteModal} />
+						</Modal>
+					)}
 		</>
 	);
 };

@@ -6,9 +6,11 @@ import {
 	useSelector as selectorHook
 } from 'react-redux';
 import { projectSlice } from './slices/projects';
+import { noteSlice } from './slices/notes';
 
 export const rootReducer = combineReducers({
-	projects: projectSlice.reducer
+	projects: projectSlice.reducer,
+	notes: noteSlice.reducer
 });
 
 const store = configureStore({

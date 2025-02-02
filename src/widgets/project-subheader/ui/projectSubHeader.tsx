@@ -7,12 +7,14 @@ export type ProjectSubHeaderProps = {
 	setShowModal: (showModal: boolean) => void;
 	page: number;
 	setPage: (page: number) => void;
+	phrase: string;
 };
 
 const ProjectSubHeader: FC<ProjectSubHeaderProps> = ({
 	setShowModal,
 	page,
-	setPage
+	setPage,
+	phrase
 }) => {
 	return (
 		<section className='subheader'>
@@ -43,7 +45,7 @@ const ProjectSubHeader: FC<ProjectSubHeaderProps> = ({
 					className={`${buttonStyles.button} ${buttonStyles.buttonCommon} ${buttonStyles.isShadowed} ${buttonStyles.buttonLargePlus} ${styles.isClicked}`}
 					onClick={() => setShowModal(true)}
 				>
-					<span>New project</span>
+					<span>{phrase}</span>
 				</button>
 			</div>
 		</section>

@@ -1,5 +1,6 @@
 export const constantsMap = {
 	slices: {
-		projects: 'projects'
+		projects: 'projects',
+		notes: 'notes'
 	}
 };

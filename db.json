@@ -6,11 +6,17 @@
         "name": "test",
         "status": "To Do",
         "last_update": "2025-01-04T17:51:32.439Z"
-      },
+      }
+    ],
+    "success": true
+  },
+  "notes": {
+    "data": [
       {
-        "id": 2,
-        "name": "wefew",
-        "last_update": "2025-01-04T18:13:00.196Z"
+        "id": 1,
+        "title": "test",
+        "content": "test",
+        "last_update": "2025-02-02T20:29:52.138Z"
       }
     ],
     "success": true
