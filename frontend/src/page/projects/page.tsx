@@ -34,10 +34,8 @@ const Projects: FC = () => {
 		});
 		dispatch(addProject(newProjects));
 	};
-
-	const notes: TNote[] = useSelector(getNotesData);
 	projects.map((project) => projectsIds.push(project.id));
-	const [showAddNoteModal, setShowAddNoteModal] = useState(false);
+	const [showAddSettingsModal, setShowAddSettingsModal] = useState(false);
 
 	const [page, setPage] = useState(0);
 
@@ -45,10 +43,10 @@ const Projects: FC = () => {
 		<>
 			<Header projects={projects} />
 			<ProjectSubHeader
-				setShowModal={page == 0 ? setShowAddProjectModal : setShowAddNoteModal}
+				setShowModal={setShowAddProjectModal}
 				page={page}
 				setPage={setPage}
-				phrase={page == 0 ? 'Add new project' : 'Add new note'}
+				phrase={'Добавить задачу'}
 			/>
 			{page == 0 && <ProjectsListNav />}
 			{page == 0 && !areProjectsLoading && (
@@ -59,7 +57,7 @@ const Projects: FC = () => {
 			{page == 0
 				? showAddProjectModal && (
 						<Modal
-							title={'Add new project'}
+							title={'Добавить задачу'}
 							onClose={() => setShowAddProjectModal(false)}
 						>
 							<AddNewForm
@@ -68,12 +66,11 @@ const Projects: FC = () => {
 							/>
 						</Modal>
 					)
-				: showAddNoteModal && (
+				: showAddSettingsModal && (
 						<Modal
-							title={'Add new note'}
+							title={'Настройки'}
 							onClose={() => setShowAddProjectModal(false)}
 						>
-							<AddNewNote notes={notes} setShowModal={setShowAddNoteModal} />
 						</Modal>
 					)}
 		</>

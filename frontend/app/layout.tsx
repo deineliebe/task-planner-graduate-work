@@ -7,8 +7,8 @@ import './layout.css';
 const rubik = Rubik({ weight: ['400', '500', '700'], subsets: ['latin'] });
 
 export const metadata: Metadata = {
-	title: 'Smart table',
-	description: 'Project for a Yandex Practicum project month'
+	title: 'Таск планер',
+	description: 'Выпускная работа за 2025 год'
 };
 
 export default function RootLayout({

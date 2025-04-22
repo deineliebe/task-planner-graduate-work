@@ -7,20 +7,13 @@
 
 .subheader-upper-part {
 	display: grid;
-	grid-template-columns: min-content auto;
 	place-items: center end;
 	gap: 20px;
 }
 
-.subheader-selected {
-	display: flex;
-	grid-area: 'selected';
-	flex-direction: row;
-	gap: 10px;
-}
-
 .subheader-add-button {
 	grid-area: 'add-project';
-	justify-self: end;
+	place-self: center;
+	white-space: nowrap;
 	background-color: var(--button-active-color);
 }

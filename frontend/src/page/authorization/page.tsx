@@ -19,14 +19,14 @@ const Authorization: FC<AuthorizationProps> = ({ setAuthorizedValue }) => {
 			>
 				<label htmlFor='email'>E-mail</label>
 				<input type='text' id='email' name='email' required></input>
-				<label htmlFor='password'>Password</label>
+				<label htmlFor='password'>Пароль</label>
 				<input type='text' id='password' name='password' required></input>
 				<button
 					type='submit'
 					className={`${buttonStyles.button} ${buttonStyles.buttonLarge} ${buttonStyles.buttonCommon} ${buttonStyles.isShadowed} ${styles.isClicked}`}
 					onClick={() => setAuthorizedValue(true)}
 				>
-					Sign in
+					Войти
 				</button>
 			</form>
 		</>

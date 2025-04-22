@@ -65,7 +65,7 @@ const AddNewFormUI: FC<AddNewFormProps> = ({ projects, setShowModal }) => {
 				onSubmit={handleSubmit}
 			>
 				<p className={`${formStyles['form-heading']} add-project-heading`}>
-					Add new project
+					Добавление задачи
 				</p>
 				<section
 					className={`${formStyles['form-section']} add-project-section`}
@@ -75,7 +75,7 @@ const AddNewFormUI: FC<AddNewFormProps> = ({ projects, setShowModal }) => {
 							className={`${formStyles['form-label']} add-project-label-required`}
 							htmlFor='project_name'
 						>
-							Project name{' '}
+							Название{' '}
 						</label>
 						<input
 							type='text'
@@ -87,7 +87,7 @@ const AddNewFormUI: FC<AddNewFormProps> = ({ projects, setShowModal }) => {
 					</fieldset>
 					<fieldset className={`${formStyles['form-field']}`}>
 						<label className={`${formStyles['form-label']}`} htmlFor='pms'>
-							Status
+							Статус
 						</label>
 						<div id='status' className={`${formStyles['form-buttons-bar']}`}>
 							<button
@@ -95,51 +95,50 @@ const AddNewFormUI: FC<AddNewFormProps> = ({ projects, setShowModal }) => {
 								className={`${formStyles['form-button-in-bar']} ${formStyles['form-button-in-bar-active']} ${buttonStyles.isShadowed}`}
 								onClick={onStatusClick}
 							>
-								To Do
+								Бэклог
 							</button>
 							<button
 								type='button'
 								className={`${formStyles['form-button-in-bar']} ${buttonStyles.buttonCommon} ${buttonStyles.isShadowed} ${styles.isClicked}`}
 								onClick={onStatusClick}
 							>
-								In Progress
+								В работе
 							</button>
 							<button
 								type='button'
 								className={`${formStyles['form-button-in-bar']} ${buttonStyles.buttonCommon} ${buttonStyles.isShadowed} ${styles.isClicked}`}
 								onClick={onStatusClick}
 							>
-								On Review
+								На проверке
 							</button>
 							<button
 								type='button'
 								className={`${formStyles['form-button-in-bar']} ${buttonStyles.buttonCommon} ${buttonStyles.isShadowed} ${styles.isClicked}`}
 								onClick={onStatusClick}
 							>
-								Done
+								В блоке
 							</button>
 							<button
 								type='button'
 								className={`${formStyles['form-button-in-bar']} ${buttonStyles.buttonCommon} ${buttonStyles.isShadowed} ${styles.isClicked}`}
 								onClick={onStatusClick}
 							>
-								Backlog
+								Готово
 							</button>
 						</div>
 					</fieldset>
 				</section>
 				<div className={`${formStyles['form-footer']}`}>
-					<button
+					<input
 						type='reset'
 						className={`${buttonStyles.button} ${buttonStyles.buttonLarge} ${buttonStyles.buttonCommon} ${buttonStyles.isShadowed} ${styles.isClicked}`}
-					>
-						Cancel
-					</button>
+						value="Отмена"
+					/>
 					<button
 						type='submit'
 						className={`${buttonStyles.button} ${buttonStyles.buttonLarge} ${buttonStyles.buttonCommon} ${buttonStyles.isShadowed} ${styles.isClicked}`}
 					>
-						Add project
+						Добавить
 					</button>
 				</div>
 			</form>

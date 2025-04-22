@@ -53,7 +53,7 @@ const AddNewFormUI: FC<AddNewNoteProps> = ({ notes, setShowModal }) => {
 							className={`${formStyles['form-label']} add-project-label-required`}
 							htmlFor='project_name'
 						>
-							Project name{' '}
+							Название{' '}
 						</label>
 						<input
 							type='text'
@@ -83,13 +83,13 @@ const AddNewFormUI: FC<AddNewNoteProps> = ({ notes, setShowModal }) => {
 						type='reset'
 						className={`${buttonStyles.button} ${buttonStyles.buttonLarge} ${buttonStyles.buttonCommon} ${buttonStyles.isShadowed} ${styles.isClicked}`}
 					>
-						Cancel
+						Отмена
 					</button>
 					<button
 						type='submit'
 						className={`${buttonStyles.button} ${buttonStyles.buttonLarge} ${buttonStyles.buttonCommon} ${buttonStyles.isShadowed} ${styles.isClicked}`}
 					>
-						Add project
+						Добавить
 					</button>
 				</div>
 			</form>

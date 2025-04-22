@@ -33,7 +33,7 @@
     "typescript": "^5"
   },
   "scripts": {
-    "dev": "concurrently \"next dev\" \"npm run server\"",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "prepare": "husky",

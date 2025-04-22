@@ -12,7 +12,7 @@ export const ProjectsListUI: FC<ProjectsListUIProps> = ({
 	<div className='project-list'>
 		<section className='section-to-do'>
 			{projectByDate
-				.filter((project) => project.status === 'To Do')
+				.filter((project) => project.status === 'Бэклог')
 				.map((project) => (
 					<ProjectCard
 						project={project}
@@ -23,7 +23,7 @@ export const ProjectsListUI: FC<ProjectsListUIProps> = ({
 		</section>
 		<section className='section-in-progress'>
 			{projectByDate
-				.filter((project) => project.status === 'In Progress')
+				.filter((project) => project.status === 'В работе')
 				.map((project) => (
 					<ProjectCard
 						project={project}
@@ -34,18 +34,7 @@ export const ProjectsListUI: FC<ProjectsListUIProps> = ({
 		</section>
 		<section className='section-on-review'>
 			{projectByDate
-				.filter((project) => project.status === 'On Review')
-				.map((project) => (
-					<ProjectCard
-						project={project}
-						deleteProject={deleteProject}
-						key={project.id}
-					/>
-				))}
-		</section>
-		<section className='section-done'>
-			{projectByDate
-				.filter((project) => project.status === 'Done')
+				.filter((project) => project.status === 'На проверке')
 				.map((project) => (
 					<ProjectCard
 						project={project}
@@ -56,7 +45,7 @@ export const ProjectsListUI: FC<ProjectsListUIProps> = ({
 		</section>
 		<section className='section-blocked'>
 			{projectByDate
-				.filter((project) => project.status === 'Blocked')
+				.filter((project) => project.status === 'В блоке')
 				.map((project) => (
 					<ProjectCard
 						project={project}
@@ -65,9 +54,9 @@ export const ProjectsListUI: FC<ProjectsListUIProps> = ({
 					/>
 				))}
 		</section>
-		<section className='section-backlog'>
+		<section className='section-done'>
 			{projectByDate
-				.filter((project) => project.status === 'Backlog')
+				.filter((project) => project.status === 'Готово')
 				.map((project) => (
 					<ProjectCard
 						project={project}

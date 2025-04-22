@@ -12,24 +12,17 @@ export type HeaderProps = {
 const Header: FC<HeaderProps> = () => (
 	<div className='header'>
 		<div className='header-block'>
-			<select
-				className={`header-select ${styles.select} ${styles.isClicked}`}
-				name='project-group'
-				id='projectGroup'
-			>
-				<option>Test group</option>
-			</select>
 		</div>
 		<div className='header-block'>
 			<button
 				className={`${buttonStyles.button} ${buttonStyles.buttonTransparent} ${buttonStyles.isShadowed} ${styles.isClicked}`}
 			>
-				Settings
+				Настройки
 			</button>
 			<button
 				className={`${buttonStyles.button} ${buttonStyles.buttonTransparent} ${buttonStyles.isShadowed} ${styles.isClicked}`}
 			>
-				Sign in
+				Войти
 			</button>
 		</div>
 	</div>

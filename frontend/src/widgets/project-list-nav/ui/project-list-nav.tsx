@@ -3,12 +3,11 @@ import { FC } from 'react';
 
 const ProjectsListNav: FC = () => (
 	<div className='project-list-nav'>
-		<span>To do</span>
-		<span>In progress</span>
-		<span>On Review</span>
-		<span>Done</span>
-		<span>Blocked</span>
-		<span>Backlog</span>
+		<span>Бэклог</span>
+		<span>В работе</span>
+		<span>На проверке</span>
+		<span>В блоке</span>
+		<span>Готово</span>
 	</div>
 );
 
