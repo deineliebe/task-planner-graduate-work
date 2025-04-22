@@ -2,7 +2,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { dbRepository } from '../repository/repository';
+import { dbRepository } from '../repository/tasksRepository';
 import { Tasks } from './entities/task.entity';
 import { TaskDTO } from './dto/tasks.dto';
 
