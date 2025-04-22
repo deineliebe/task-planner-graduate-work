@@ -1,37 +1,65 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Films } from '../films/entities/films.entity';
-import { Schedules } from '../films/entities/schedules.entity';
+import { Tasks } from '../tasks/entities/task.entity';
+import { TaskDTO } from '../tasks/dto/tasks.dto';
 
 @Injectable()
 export class dbRepository {
   constructor(
-    @InjectRepository(Films) private filmsRepository: Repository<Films>,
-    @InjectRepository(Schedules)
-    private schedulesRepository: Repository<Schedules>,
-  ) {}
+    @InjectRepository(Tasks) private repository: Repository<Tasks>) {}
 
-  async getFilms(): Promise<Films[]> {
-    return this.filmsRepository.find({
-      relations: ['schedules'],
+  async getNewTasks(): Promise<Tasks[]> {
+    return this.repository.find({
+      order: {
+        createdAt: "DESC",
+      },
     });
   }
 
-  async getFilmsById(id: string): Promise<Films> {
-    return this.filmsRepository.findOne({
-      where: { id: id },
-      relations: ['schedules'],
+  async getHotTasks(): Promise<Tasks[]> {
+    return this.repository.find({
+      order: {
+        deadline: "DESC",
+      },
     });
   }
 
-  async getSchedulesById(id: string): Promise<Schedules> {
-    return this.schedulesRepository.findOne({
-      where: { id: id },
+  async getTasksByStatus(status: string): Promise<Tasks[]> {
+    return this.repository.find({
+      where: {
+        status: status,
+      },
     });
   }
 
-  async putScheduleById(id: string, taken: string) {
-    await this.schedulesRepository.update({ id: id }, { taken: taken });
+  async addTask(task: TaskDTO) {
+    return this.repository.create(task);
+  }
+
+  async getTaskById(id: string): Promise<Tasks> {
+    return this.repository.findOne({
+      where: { id: id }
+    });
+  }
+
+  async updateTaskNameById(id: string, name: string) {
+    await this.repository.update({ id: id }, { name: name });
+  }
+
+  async updateTaskDescriptionById(id: string, description: string) {
+    await this.repository.update({ id: id }, { description: description });
+  }
+
+  async updateTaskStatusById(id: string, status: string) {
+    await this.repository.update({ id: id }, { status: status });
+  }
+
+  async updateTaskDeadlineById(id: string, deadline: Date | null) {
+    await this.repository.update({ id: id }, { deadline: deadline });
+  }
+
+  async deleteTask(id: string) {
+    await this.repository.delete({ id: id });
   }
 }

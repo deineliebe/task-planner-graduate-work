@@ -7,7 +7,7 @@ import { Films } from './films/entities/films.entity';
 import { Schedules } from './films/entities/schedules.entity';
 import { configProvider } from './app.config.provider';
 import { FilmsModule } from './films/films.module';
-import { OrderModule } from './order/order.module';
+import { OrderModule } from './tasks/tasks.module';
 
 @Module({
   imports: [

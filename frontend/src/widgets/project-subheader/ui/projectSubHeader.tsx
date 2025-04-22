@@ -30,16 +30,6 @@ const ProjectSubHeader: FC<ProjectSubHeaderProps> = ({
 					>
 						<p>Tasks</p>
 					</button>
-					<button
-						className={
-							page == 1
-								? `${buttonStyles.button} ${buttonStyles.buttonDisabled}`
-								: `${buttonStyles.button} ${buttonStyles.buttonCommon} ${buttonStyles.isShadowed} ${styles.isClicked}`
-						}
-						onClick={() => setPage(1)}
-					>
-						<p>Notes</p>
-					</button>
 				</div>
 				<button
 					className={`${buttonStyles.button} ${buttonStyles.buttonCommon} ${buttonStyles.isShadowed} ${buttonStyles.buttonLargePlus} ${styles.isClicked}`}
