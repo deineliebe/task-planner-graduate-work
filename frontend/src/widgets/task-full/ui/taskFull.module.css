@@ -1,0 +1,26 @@
+.task-header {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	place-items: center end;
+	margin-inline: 25px;
+}
+
+.task-header-text {
+	place-self: center;
+}
+
+.task-section {
+	place-self: center;
+}
+
+.task-label {
+	place-self: center;
+}
+
+.task-deadline {
+	place-items: center;
+}
+
+.task-text {
+	place-items: center;
+}

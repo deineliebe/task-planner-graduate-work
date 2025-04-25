@@ -11,7 +11,7 @@ export const TaskCardUI: FC<TaskCardUIProps> = ({ taskInfo, deleteTask }) => {
 		<div className={cardStyles['task']}>
 			<Link
 				className={`${cardStyles['task-name']} ${styles.isClicked}`}
-				href={`/task/${taskInfo.id}`}
+				href={`/tasks/${taskInfo.id}`}
 			>
 				{taskInfo.name}
 			</Link>

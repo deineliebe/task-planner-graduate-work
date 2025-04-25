@@ -5,11 +5,13 @@ import store from '@/shared/lib/store/store';
 import styles from '../shared/ui/styles.css';
 import layout from '../shared/ui/layout.css';
 import { Footer } from '@/widgets/footer';
+import { Settings } from '@/widgets/settings';
 import React from 'react';
 import Authorization from './authorization/page';
 import Head from 'next/head';
 import favicon from '../app/favicon.ico';
 import { Header } from '@/widgets/header';
+import { Modal } from '@/widgets/modal/model';
 
 const rubik = Rubik({
 	weight: ['400', '500', '700'],
@@ -35,6 +37,7 @@ export default function MyApp({ Component, pageProps }) {
 							<Header
 								setAuthorizedValue={setAuthorizedValue}
 								isAuthorized={isAuthorized}
+								setShowAddSettingsModal={setShowAddSettingsModal}
 							/>
 							{isAuthorized ? (
 								<Component
@@ -49,8 +52,10 @@ export default function MyApp({ Component, pageProps }) {
 						{showAddSettingsModal && (
 							<Modal
 								title={'Настройки'}
-								onClose={() => setShowAddTaskModal(false)}
-							></Modal>
+								onClose={() => setShowAddSettingsModal(false)}
+							>
+								<Settings setShowModal={setShowAddSettingsModal} />
+							</Modal>
 						)}
 						<Footer />
 					</div>

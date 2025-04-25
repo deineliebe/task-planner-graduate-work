@@ -8,9 +8,14 @@ import { FC } from 'react';
 export type HeaderProps = {
 	isAuthorized: boolean;
 	setAuthorizedValue: (isAuthorized: boolean) => void;
+	setShowAddSettingsModal: (isShown: boolean) => void;
 };
 
-const Header: FC<HeaderProps> = ({ isAuthorized, setAuthorizedValue }) => {
+const Header: FC<HeaderProps> = ({
+	isAuthorized,
+	setAuthorizedValue,
+	setShowAddSettingsModal
+}) => {
 	const router = useRouter();
 	return (
 		<div className={header.header}>
@@ -19,6 +24,9 @@ const Header: FC<HeaderProps> = ({ isAuthorized, setAuthorizedValue }) => {
 					<>
 						<button
 							className={`${buttonStyles.button} ${buttonStyles.buttonTransparent} ${buttonStyles.isShadowed} ${styles.isClicked}`}
+							onClick={() => {
+								setShowAddSettingsModal(true);
+							}}
 						>
 							Настройки
 						</button>

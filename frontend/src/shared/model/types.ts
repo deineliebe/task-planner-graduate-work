@@ -1,14 +1,9 @@
 export type TTask = {
 	id: number;
 	name: string;
-	last_update: Date;
+	description: string;
+	deadline: Date | null;
 	status: string;
-};
-
-export type TNote = {
-	id: number;
-	title: string;
-	content: string;
 	last_update: Date;
 };
 

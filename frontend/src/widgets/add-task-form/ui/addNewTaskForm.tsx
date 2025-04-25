@@ -42,6 +42,10 @@ const AddNewFormUI: FC<AddNewFormProps> = ({ tasks, setShowModal }) => {
 		const newTask: TTask = {
 			id: tasks.length + 1,
 			name: (document.getElementById('task_name') as HTMLInputElement)?.value,
+			description: (
+				document.getElementById('task_description') as HTMLInputElement
+			)?.value,
+			deadline: startDate,
 			status: (
 				document.body.querySelector(
 					`.${formStyles['form-button-in-bar-active']}`
@@ -73,9 +77,7 @@ const AddNewFormUI: FC<AddNewFormProps> = ({ tasks, setShowModal }) => {
 				<section
 					className={`${formStyles['form-section']} ${addTaskStyles['add-task-section']}`}
 				>
-					<fieldset
-						className={`${addTaskStyles['fieldset']} ${formStyles['form-field']}`}
-					>
+					<fieldset className={`${formStyles['form-field']}`}>
 						<label
 							className={`${formStyles['form-label']} ${addTaskStyles['add-task-label-required']}`}
 							htmlFor='task_name'
@@ -90,22 +92,20 @@ const AddNewFormUI: FC<AddNewFormProps> = ({ tasks, setShowModal }) => {
 							required
 						/>
 					</fieldset>
-					<fieldset
-						className={`${addTaskStyles['fieldset']} ${formStyles['form-field']}`}
-					>
+					<fieldset className={`${formStyles['form-field']}`}>
 						<label
 							className={`${formStyles['form-label']}`}
-							htmlFor='task_name'
+							htmlFor='task_description'
 						>
 							Описание
 						</label>
 						<textarea
+							id='task_description'
+							name='task_description'
 							className={`${inputStyles.input} ${addTaskStyles['add-task-input']}`}
 						/>
 					</fieldset>
-					<fieldset
-						className={`${addTaskStyles['fieldset']} ${formStyles['form-field']}`}
-					>
+					<fieldset className={`${formStyles['form-field']}`}>
 						<label className={`${formStyles['form-label']}`} htmlFor='deadline'>
 							Дедлайн
 						</label>
@@ -117,9 +117,7 @@ const AddNewFormUI: FC<AddNewFormProps> = ({ tasks, setShowModal }) => {
 							onChange={(date) => setStartDate(date)}
 						/>
 					</fieldset>
-					<fieldset
-						className={`${addTaskStyles['fieldset']} ${formStyles['form-field']}`}
-					>
+					<fieldset className={`${formStyles['form-field']}`}>
 						<label className={`${formStyles['form-label']}`} htmlFor='status'>
 							Статус
 						</label>
@@ -167,6 +165,7 @@ const AddNewFormUI: FC<AddNewFormProps> = ({ tasks, setShowModal }) => {
 						type='reset'
 						className={`${buttonStyles.button} ${buttonStyles.buttonLarge} ${buttonStyles.buttonCommon} ${buttonStyles.isShadowed} ${styles.isClicked}`}
 						value='Отмена'
+						onClick={() => setShowModal(false)}
 					/>
 					<button
 						type='submit'
