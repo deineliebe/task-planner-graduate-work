@@ -67,7 +67,7 @@ const Settings: FC<SettingsProps> = ({ setShowModal }) => {
 							className={`${formStyles['form-label']}`}
 							htmlFor='settings_password'
 						>
-							Password
+							Пароль
 						</label>
 						<input
 							type='text'

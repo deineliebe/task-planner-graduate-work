@@ -7,7 +7,7 @@ import layout from '../shared/ui/layout.css';
 import { Footer } from '@/widgets/footer';
 import { Settings } from '@/widgets/settings';
 import React from 'react';
-import Authorization from './authorization/page';
+import Authorization from './login/index';
 import Head from 'next/head';
 import favicon from '../app/favicon.ico';
 import { Header } from '@/widgets/header';
