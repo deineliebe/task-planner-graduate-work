@@ -1,0 +1,17 @@
+.task-list-nav {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	align-items: center;
+	block-size: 100%;
+	padding: 8px 10px;
+	color: var(--text-additional-color);
+	font-weight: 500;
+	font-size: 12px;
+	text-transform: uppercase;
+}
+
+.task-list-nav-info {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}

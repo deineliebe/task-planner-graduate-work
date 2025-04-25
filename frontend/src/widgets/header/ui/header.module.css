@@ -1,0 +1,26 @@
+.header {
+	position: fixed;
+	top: 0;
+	right: 0;
+	display: grid;
+	inline-size: 100%;
+	block-size: var(--header-width);
+	color: var(--header-accent-color);
+	background: var(--header-main-color);
+}
+
+.header-avatar {
+	border-radius: 50%;
+}
+
+.header-block {
+	display: flex;
+	justify-content: end;
+	align-self: center;
+	gap: 14px;
+	padding: 0 12px;
+}
+
+.header-select {
+	background: transparent;
+}

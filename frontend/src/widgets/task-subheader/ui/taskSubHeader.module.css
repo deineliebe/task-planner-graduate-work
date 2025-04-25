@@ -1,0 +1,19 @@
+.subheader {
+	display: flex;
+	flex-direction: column;
+	gap: 28px;
+	padding: 20px 20px 0;
+}
+
+.subheader-upper-part {
+	display: grid;
+	place-items: center end;
+	gap: 20px;
+}
+
+.subheader-add-button {
+	grid-area: 'add-task';
+	place-self: center;
+	white-space: nowrap;
+	background-color: var(--button-active-color);
+}

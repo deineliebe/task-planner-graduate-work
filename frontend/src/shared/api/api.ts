@@ -1,26 +1,29 @@
-import { TNote, TProject } from '../model/types';
-import {
-	TNotesResponse,
-	TProfileResponse,
-	TProjectsResponse,
-	TUsersResponse
-} from './types';
+import { TTask } from '../model/types';
+import { TProfileResponse, TTasksResponse, TUsersResponse } from './types';
 
 const URL = 'http://localhost:3001';
 
 const checkResponse = <T>(res: Response): Promise<T> =>
 	res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
 
-export const getProjectsApi = () =>
-	fetch(`${URL}/projects`)
-		.then((res) => checkResponse<TProjectsResponse>(res))
+export const getTasksApi = () =>
+	fetch(`${URL}/tasks`)
+		.then((res) => checkResponse<TTasksResponse>(res))
 		.then((data) => {
 			if (data?.success) return data;
 			return Promise.reject(data);
 		});
 
-export const addProjectsApi = (data: TProject[]) =>
-	fetch(`${URL}/projects`, {
+export const getTaskApi = (id: number) =>
+	fetch(`${URL}/tasks/${id}`)
+		.then((res) => checkResponse<TTasksResponse>(res))
+		.then((data) => {
+			if (data?.success) return data;
+			return Promise.reject(data);
+		});
+
+export const addTasksApi = (data: TTask[]) =>
+	fetch(`${URL}/tasks`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8'
@@ -30,32 +33,7 @@ export const addProjectsApi = (data: TProject[]) =>
 			success: true
 		})
 	})
-		.then((res) => checkResponse<TProjectsResponse>(res))
-		.then((data) => {
-			if (data?.success) return data;
-			return Promise.reject(data);
-		});
-
-export const getNotesApi = () =>
-	fetch(`${URL}/notes`)
-		.then((res) => checkResponse<TNotesResponse>(res))
-		.then((data) => {
-			if (data?.success) return data;
-			return Promise.reject(data);
-		});
-
-export const addNotesApi = (data: TNote[]) =>
-	fetch(`${URL}/notes`, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json;charset=utf-8'
-		} as HeadersInit,
-		body: JSON.stringify({
-			data: data,
-			success: true
-		})
-	})
-		.then((res) => checkResponse<TNotesResponse>(res))
+		.then((res) => checkResponse<TTasksResponse>(res))
 		.then((data) => {
 			if (data?.success) return data;
 			return Promise.reject(data);
@@ -78,7 +56,7 @@ export const getProfileApi = () =>
 		});
 
 export const api = {
-	getProjectsApi,
+	getTasksApi,
 	getUsersApi,
 	getProfileApi
 };

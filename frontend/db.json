@@ -1,22 +1,29 @@
 {
-  "projects": {
+  "tasks": {
     "data": [
       {
         "id": 1,
         "name": "test",
         "status": "To Do",
         "last_update": "2025-01-04T17:51:32.439Z"
-      }
-    ],
-    "success": true
-  },
-  "notes": {
-    "data": [
+      },
       {
-        "id": 1,
-        "title": "test",
-        "content": "test",
-        "last_update": "2025-02-02T20:29:52.138Z"
+        "id": 3,
+        "name": "ФЧфЧ",
+        "status": "Бэклог",
+        "last_update": "2025-04-24T03:18:38.323Z"
+      },
+      {
+        "id": 3,
+        "name": "dqwdqw",
+        "status": "Бэклог",
+        "last_update": "2025-04-25T02:57:08.845Z"
+      },
+      {
+        "id": 4,
+        "name": "wgew",
+        "status": "На проверке",
+        "last_update": "2025-04-25T02:57:56.182Z"
       }
     ],
     "success": true

@@ -1,4 +1,4 @@
-export type TProject = {
+export type TTask = {
 	id: number;
 	name: string;
 	last_update: Date;

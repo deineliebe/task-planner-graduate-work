@@ -1,0 +1,14 @@
+.task {
+	display: flex;
+	align-items: center;
+	place-content: space-between;
+	block-size: 100%;
+	padding: 0 10px;
+	color: var(--text-heading-color);
+	font-weight: 400;
+	font-size: 14px;
+}
+
+.task-name {
+	color: var(--text-link-color);
+}

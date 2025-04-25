@@ -1,11 +1,11 @@
-import { TNote, TProject, TUser } from '../model/types';
+import { TNote, TTask, TUser } from '../model/types';
 
 type TServerResponse<T> = {
 	success: boolean;
 } & T;
 
-export type TProjectsResponse = TServerResponse<{
-	data: TProject[];
+export type TTasksResponse = TServerResponse<{
+	data: TTask[];
 }>;
 
 export type TNotesResponse = TServerResponse<{

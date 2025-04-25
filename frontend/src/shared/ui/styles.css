@@ -1,0 +1,29 @@
+.select {
+	display: flex;
+	color: inherit;
+	font: inherit;
+	background-image: url('../../shared/lib/icons/down.svg');
+	background-repeat: no-repeat;
+	background-position: center right;
+	border: none;
+	outline: none;
+	appearance: none;
+}
+
+.isClicked {
+	cursor: url('../lib/icons/Clicker.svg'), auto;
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	white-space: nowrap;
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+}
+
+.upperCase {
+	text-transform: uppercase;
+}
