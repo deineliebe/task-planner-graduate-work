@@ -40,6 +40,23 @@ const TaskFull: FC = () => {
 		);
 		(evt?.target as HTMLElement)?.classList?.remove(`${styles.isClicked}`);
 	};
+	const handleSubmit = () => {
+		const newTask = {
+			id: task?.id,
+			name: (document.getElementById('task_name') as HTMLInputElement)?.value,
+			description: (
+				document.getElementById('task_description') as HTMLInputElement
+			)?.value,
+			deadline: startDate,
+			status: (
+				document.body.querySelector(
+					`.${formStyles['form-button-in-bar-active']}`
+				) as HTMLButtonElement
+			)?.innerText,
+			last_update: task?.last_update
+		};
+		console.log(newTask);
+	};
 	console.log(tasks);
 	return (
 		<>
@@ -81,11 +98,13 @@ const TaskFull: FC = () => {
 				<fieldset className={`${formStyles['form-field']}`}>
 					<label
 						className={`${formStyles['form-label']} ${taskFullStyles['task-label']}`}
-						htmlFor='task_name'
+						htmlFor='task_description'
 					>
 						Описание
 					</label>
 					<textarea
+						id='task_description'
+						name='task_description'
 						className={`${inputStyles.input} ${taskFullStyles['task-text']}`}
 						defaultValue={task?.description}
 					/>
@@ -152,6 +171,7 @@ const TaskFull: FC = () => {
 				</fieldset>
 				<button
 					className={`${buttonStyles.button} ${buttonStyles.buttonLarge} ${buttonStyles.buttonCommon} ${buttonStyles.isShadowed} ${styles.isClicked}`}
+					onClick={handleSubmit}
 				>
 					Сохранить
 				</button>

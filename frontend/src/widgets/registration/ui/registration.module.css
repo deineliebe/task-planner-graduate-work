@@ -1,0 +1,12 @@
+.authorizationForm {
+	display: flex;
+	flex-direction: column;
+	place-items: center;
+	padding: 40px;
+	margin: auto;
+	inline-size: 400px;
+	gap: 20px;
+	color: var(--text-heading-color);
+	font-weight: 400;
+	font-size: 14px;
+}

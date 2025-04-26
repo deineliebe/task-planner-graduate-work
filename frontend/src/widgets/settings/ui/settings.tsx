@@ -14,6 +14,15 @@ type SettingsProps = {
 const Settings: FC<SettingsProps> = ({ setShowModal }) => {
 	const handleSubmit = (e: SyntheticEvent) => {
 		e.preventDefault();
+		const userData = {
+			email: (document.getElementById('settings_email') as HTMLInputElement)
+				?.value,
+			tg: (document.getElementById('settings_tg') as HTMLInputElement)?.value,
+			password: (
+				document.getElementById('settings_password') as HTMLInputElement
+			)?.value
+		};
+		console.log(userData);
 		setShowModal(false);
 	};
 	return (
@@ -89,7 +98,7 @@ const Settings: FC<SettingsProps> = ({ setShowModal }) => {
 						type='submit'
 						className={`${buttonStyles.button} ${buttonStyles.buttonLarge} ${buttonStyles.buttonCommon} ${buttonStyles.isShadowed} ${styles.isClicked}`}
 					>
-						Добавить
+						Изменить
 					</button>
 				</div>
 			</form>
