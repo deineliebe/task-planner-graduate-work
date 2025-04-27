@@ -9,7 +9,6 @@ import { Settings } from '@/widgets/settings';
 import React from 'react';
 import Authorization from './login/index';
 import Head from 'next/head';
-import favicon from '../app/favicon.ico';
 import { Header } from '@/widgets/header';
 import { Modal } from '@/widgets/modal/model';
 
