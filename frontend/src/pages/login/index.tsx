@@ -19,7 +19,9 @@ const Authorization: FC<AuthorizationProps> = ({ setAuthorizedValue }) => {
 			>
 				{isRegistrationMode ? 'Вход' : 'Регистрация'}
 			</button>
-			<Header setAuthorizedValue={setAuthorizedValue} isAuthorized={false} />
+			<Header setAuthorizedValue={setAuthorizedValue} isAuthorized={false} setShowAddSettingsModal={function (isShown: boolean): void {
+				throw new Error('Function not implemented.');
+			} } />
 
 			{!isRegistrationMode ? (
 				<Login setAuthorizedValue={setAuthorizedValue} />
