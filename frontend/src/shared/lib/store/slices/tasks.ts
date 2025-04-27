@@ -1,4 +1,4 @@
-import { addTasksApi, getTaskApi, getTasksApi } from '@/shared/api/api';
+import { addTasksApi, getTasksApi } from '@/shared/api/api';
 import { constantsMap } from '@/shared/model/constants';
 import { TTask } from '@/shared/model/types';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';

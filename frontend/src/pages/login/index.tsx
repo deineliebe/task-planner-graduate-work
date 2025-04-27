@@ -23,6 +23,7 @@ const Authorization: FC<AuthorizationProps> = ({ setAuthorizedValue }) => {
 				setAuthorizedValue={setAuthorizedValue}
 				isAuthorized={false}
 				setShowAddSettingsModal={function (isShown: boolean): void {
+					console.log(isShown);
 					throw new Error('Function not implemented.');
 				}}
 			/>
@@ -30,7 +31,7 @@ const Authorization: FC<AuthorizationProps> = ({ setAuthorizedValue }) => {
 			{!isRegistrationMode ? (
 				<Login setAuthorizedValue={setAuthorizedValue} />
 			) : (
-				<Registration setAuthorizedValue={setAuthorizedValue} />
+				<Registration />
 			)}
 		</>
 	);

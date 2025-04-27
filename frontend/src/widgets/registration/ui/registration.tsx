@@ -3,11 +3,7 @@ import styles from '../../../shared/ui/styles.module.css';
 import buttonStyles from '../../../shared/ui/button.module.css';
 import { FC, SyntheticEvent } from 'react';
 
-type AuthorizationProps = {
-	setAuthorizedValue: (isAuthorized: boolean) => void;
-};
-
-const Registration: FC<AuthorizationProps> = ({ setAuthorizedValue }) => {
+const Registration: FC = () => {
 	const handleSubmit = (e: SyntheticEvent) => {
 		e.preventDefault();
 		const userData = {
