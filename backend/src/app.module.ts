@@ -3,11 +3,9 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as path from 'node:path';
 import { ServeStaticModule } from '@nestjs/serve-static';
-import { Films } from './films/entities/films.entity';
-import { Schedules } from './films/entities/schedules.entity';
 import { configProvider } from './app.config.provider';
-import { FilmsModule } from './films/films.module';
-import { OrderModule } from './tasks/tasks.module';
+import { TaskModule } from './tasks/tasks.module';
+import { Tasks } from './tasks/entities/task.entity';
 
 @Module({
   imports: [
@@ -17,7 +15,7 @@ import { OrderModule } from './tasks/tasks.module';
     }),
     ServeStaticModule.forRoot({
       rootPath: path.join(__dirname, '..', 'public'),
-      renderPath: '/content/afisha/',
+      renderPath: '/content/',
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -26,11 +24,10 @@ import { OrderModule } from './tasks/tasks.module';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      entities: [Films, Schedules],
+      entities: [Tasks],
       synchronize: true,
     }),
-    FilmsModule,
-    OrderModule,
+    TaskModule,
   ],
   controllers: [],
   providers: [configProvider],
