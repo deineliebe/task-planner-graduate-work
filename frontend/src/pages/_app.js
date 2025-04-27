@@ -27,7 +27,6 @@ export default function MyApp({ Component, pageProps }) {
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<title>Таск планер</title>
 				<meta name='description' content='Выпускная работа за 2025 год' />
-				<link rel='icon' href={favicon} />
 			</Head>
 			<ThemeProvider attribute='class' defaultTheme='system'>
 				<Provider store={store}>
