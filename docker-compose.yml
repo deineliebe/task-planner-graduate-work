@@ -1,6 +1,6 @@
 services:
   frontend:
-    image: ghcr.io/deineliebe/film-react-nest/frontend:latest
+    image: ghcr.io/deineliebe/task-planner-graduate-work-/frontend:latest
     container_name: frontend
     build:
       context: ./frontend
@@ -16,7 +16,7 @@ services:
     restart: unless-stopped
 
   backend:
-    image: ghcr.io/deineliebe/film-react-nest/backend:latest
+    image: ghcr.io/deineliebe/task-planner-graduate-work-/backend:latest
     container_name: backend
     build:
       context: ./backend
