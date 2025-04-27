@@ -22,7 +22,9 @@ const TaskFull: FC = () => {
 	const task = tasks.findLast(function (elem) {
 		return elem.id == Number(id);
 	});
-	const [startDate, setStartDate] = useState<Date | null>(task?.deadline || null);
+	const [startDate, setStartDate] = useState<Date | null>(
+		task?.deadline || null
+	);
 	const onStatusClick = (evt: React.MouseEvent) => {
 		document.body
 			.querySelector(`.${formStyles['form-button-in-bar-active']}`)
