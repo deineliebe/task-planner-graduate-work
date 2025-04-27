@@ -9,19 +9,20 @@ import { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import taskFullStyles from './taskFull.module.css';
+import store from '@/shared/lib/store/store';
 
 const TaskFull: FC = () => {
 	const router = useRouter();
 	const { id } = router.query;
-	const dispatch = useDispatch();
-	useEffect(() => {
-		dispatch(getTasks());
-	}, []);
+	type AppDispatch = typeof store.dispatch;
+	const useAppDispatch = () => useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
+	dispatch(getTasks());
 	const tasks: TTask[] = useSelector(getTaskData);
 	const task = tasks.findLast(function (elem) {
 		return elem.id == Number(id);
 	});
-	const [startDate, setStartDate] = useState(task?.deadline);
+	const [startDate, setStartDate] = useState<Date | null>(task?.deadline || null);
 	const onStatusClick = (evt: React.MouseEvent) => {
 		document.body
 			.querySelector(`.${formStyles['form-button-in-bar-active']}`)

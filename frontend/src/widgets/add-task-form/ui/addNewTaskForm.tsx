@@ -36,7 +36,7 @@ const AddNewFormUI: FC<AddNewFormProps> = ({ tasks, setShowModal }) => {
 		(evt?.target as HTMLElement)?.classList?.remove(`${styles.isClicked}`);
 	};
 	const dispatch = useDispatch();
-	const [startDate, setStartDate] = useState(null);
+	const [startDate, setStartDate] = useState<Date | null>(null);
 	const handleSubmit = (e: SyntheticEvent) => {
 		e.preventDefault();
 		const newTask: TTask = {
