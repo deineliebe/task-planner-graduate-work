@@ -1,14 +1,14 @@
-FROM node:22-alpine AS builder
+FROM node:slim AS builder
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm install --force
 COPY . .
 RUN npm run build
-FROM node:22-alpine AS production
+FROM node:slim AS production
 WORKDIR /app
 COPY --from=builder /app/dist /app/dist
 COPY --from=builder /app/package*.json /app/
 COPY --from=builder /app/public /app/public
-RUN npm install --only=production
+RUN npm install --force --only=production
 EXPOSE 3000
 CMD ["node", "dist/main"]
