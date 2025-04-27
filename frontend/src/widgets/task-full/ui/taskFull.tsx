@@ -5,7 +5,7 @@ import buttonStyles from '../../../shared/ui/button.module.css';
 import inputStyles from '../../../shared/ui/input.module.css';
 import styles from '../../../shared/ui/styles.module.css';
 import { useRouter } from 'next/router';
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import taskFullStyles from './taskFull.module.css';
