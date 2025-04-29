@@ -1,0 +1,32 @@
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    channel_id VARCHAR(25) UNIQUE
+);
+
+CREATE TABLE authorizationData (
+    id INT NOT NULL UNIQUE,
+    email VARCHAR(256) NOT NULL UNIQUE PRIMARY KEY,
+    password VARCHAR(30) NOT NULL,
+    FOREIGN KEY (id) REFERENCES users (id)
+);
+
+CREATE TABLE statuses (
+	status VARCHAR(25) PRIMARY KEY
+);
+
+CREATE TABLE tasks (
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(256) NOT NULL,
+	description VARCHAR(256),
+	deadline DATE,
+	created_at DATE NOT NULL,
+	status VARCHAR(25) NOT NULL,
+	FOREIGN KEY (status) REFERENCES statuses (status)
+);
+
+CREATE TABLE userTasks (
+	user_id INT NOT NULL,
+	task_id INT NOT NULL,
+	FOREIGN KEY (user_id) REFERENCES users (id),
+	FOREIGN KEY (task_id) REFERENCES tasks (id)
+);

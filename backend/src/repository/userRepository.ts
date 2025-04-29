@@ -5,7 +5,7 @@ import { Tasks } from '../tasks/entities/task.entity';
 import { TaskDTO } from '../tasks/dto/tasks.dto';
 
 @Injectable()
-export class tasksRepository {
+export class userRepository {
   constructor(
     @InjectRepository(Tasks) private repository: Repository<Tasks>) {}
 

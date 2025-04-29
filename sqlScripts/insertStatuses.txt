@@ -1,0 +1,5 @@
+INSERT INTO statuses (status) VALUES ('Бэклог');
+INSERT INTO statuses (status) VALUES ('В работе');
+INSERT INTO statuses (status) VALUES ('В блоке');
+INSERT INTO statuses (status) VALUES ('Готово');
+INSERT INTO statuses (status) VALUES ('Отменено');

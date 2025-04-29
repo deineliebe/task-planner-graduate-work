@@ -7,8 +7,7 @@ export const configProvider = {
     database: {
       driver: process.env.DATABASE_DRIVER || 'postgress',
       url:
-        process.env.DATABASE_URL ||
-        'postgres://postgres:qwerty@postgres:5432/prac',
+        process.env.DATABASE_URL,
     },
   },
 };

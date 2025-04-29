@@ -2,13 +2,13 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { dbRepository } from '../repository/tasksRepository';
+import { tasksRepository } from '../repository/tasksRepository';
 import { Tasks } from './entities/task.entity';
 import { TaskDTO } from './dto/tasks.dto';
 
 @Injectable()
 export class TaskService {
-  constructor(private readonly repository: dbRepository) {}
+  constructor(private readonly repository: tasksRepository) {}
 
   async getNewTasks(): Promise<Tasks[]> {
     const tasks = await this.repository.getNewTasks();
