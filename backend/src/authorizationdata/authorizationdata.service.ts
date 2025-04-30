@@ -1,14 +1,14 @@
 import {
   Injectable,
 } from '@nestjs/common';
-import { User } from './entities/user.entity';
+import { AuthorizationData } from './entities/authorizationdata.entity';
 import { userRepository } from '../repository/userRepository';
 
 @Injectable()
 export class UserService {
   constructor(private readonly repository: userRepository) {}
 
-  async getUser(email: string, password: string): Promise<User> {
+  async getUser(email: string, password: string): Promise<AuthorizationData> {
     const userInfo = await this.repository.getUserByEmail(email, password);
     return userInfo;
   }
