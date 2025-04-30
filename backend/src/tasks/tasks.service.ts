@@ -40,7 +40,7 @@ export class TaskService {
     return await this.repository.addTask(task);
   }
 
-  async updateTaskNameById(id: number, p0: Status, name: string) {
+  async updateTaskNameById(id: number, name: string) {
     return await this.repository.updateTaskNameById(id, name);
   }
 
