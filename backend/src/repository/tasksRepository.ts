@@ -12,7 +12,7 @@ export class tasksRepository {
   async getNewTasks(): Promise<Tasks[]> {
     return this.repository.find({
       order: {
-        createdAt: "DESC",
+        created_at: "DESC",
       },
     });
   }
@@ -37,29 +37,29 @@ export class tasksRepository {
     return this.repository.create(task);
   }
 
-  async getTaskById(id: string): Promise<Tasks> {
+  async getTaskById(id: number): Promise<Tasks> {
     return this.repository.findOne({
       where: { id: id }
     });
   }
 
-  async updateTaskNameById(id: string, name: string) {
+  async updateTaskNameById(id: number, name: string) {
     await this.repository.update({ id: id }, { name: name });
   }
 
-  async updateTaskDescriptionById(id: string, description: string) {
+  async updateTaskDescriptionById(id: number, description: string) {
     await this.repository.update({ id: id }, { description: description });
   }
 
-  async updateTaskStatusById(id: string, status: string) {
+  async updateTaskStatusById(id: number, status: string) {
     await this.repository.update({ id: id }, { status: status });
   }
 
-  async updateTaskDeadlineById(id: string, deadline: Date | null) {
+  async updateTaskDeadlineById(id: number, deadline: Date | null) {
     await this.repository.update({ id: id }, { deadline: deadline });
   }
 
-  async deleteTask(id: string) {
+  async deleteTask(id: number) {
     await this.repository.delete({ id: id });
   }
 }

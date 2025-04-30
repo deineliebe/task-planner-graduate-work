@@ -5,6 +5,8 @@ import * as path from 'node:path';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { configProvider } from './app.config.provider';
 import { TaskModule } from './tasks/tasks.module';
+import { UserModule } from './users/users.module';
+import { UsersTasksModule } from './usersTasks/usersTasks.module';
 
 @Module({
   imports: [
@@ -27,6 +29,8 @@ import { TaskModule } from './tasks/tasks.module';
       synchronize: true,
     }),
     TaskModule,
+    UserModule,
+    UsersTasksModule,
   ],
   controllers: [],
   providers: [configProvider],

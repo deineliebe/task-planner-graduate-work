@@ -4,7 +4,7 @@ import { IsString, IsOptional, IsDateString } from 'class-validator';
 @Entity()
 export class Tasks {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id: number;
   @Column()
   @IsString()
   name: string;
@@ -21,5 +21,5 @@ export class Tasks {
   deadline: Date | null;
   @Column({ type: 'date' })
   @IsDateString()
-  createdAt: Date;
+  created_at: Date;
 }

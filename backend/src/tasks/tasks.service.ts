@@ -25,7 +25,7 @@ export class TaskService {
     return tasks;
   }
 
-  async getTaskById(id: string): Promise<Tasks> {
+  async getTaskById(id: number): Promise<Tasks> {
     const tasks = await this.repository.getTaskById(id);
     if (!tasks) {
       throw new NotFoundException(
@@ -39,23 +39,23 @@ export class TaskService {
     return await this.repository.addTask(task);
   }
 
-  async updateTaskNameById(id: string, name: string) {
+  async updateTaskNameById(id: number, name: string) {
     return await this.repository.updateTaskNameById(id, name);
   }
 
-  async updateTaskDescriptionById(id: string, description: string) {
+  async updateTaskDescriptionById(id: number, description: string) {
     return await this.repository.updateTaskDescriptionById(id, description);
   }
 
-  async updateTaskStatusById(id: string, status: string) {
+  async updateTaskStatusById(id: number, status: string) {
     return await this.repository.updateTaskStatusById(id, status);
   }
 
-  async updateTaskDeadlineById(id: string, deadline: Date | null) {
+  async updateTaskDeadlineById(id: number, deadline: Date | null) {
     return await this.repository.updateTaskDeadlineById(id, deadline);
   }
 
-  async deleteTask(id: string) {
+  async deleteTask(id: number) {
     return await this.repository.deleteTask(id);
   }
 }

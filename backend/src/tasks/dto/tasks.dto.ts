@@ -3,5 +3,5 @@ export class TaskDTO {
   description: string;
   status: string;
   deadline: Date | null;
-  createdAt: Date;
+  created_at: Date;
 }

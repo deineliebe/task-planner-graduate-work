@@ -27,22 +27,22 @@ export class TaskController {
   }
 
   @Put('/newName')
-  async updateName(@Body() id: string, name: string) {
+  async updateName(@Body() id: number, name: string) {
     return await this.taskService.updateTaskNameById(id, name);
   }
 
   @Put('/newDescription')
-  async updateDescription(@Body() id: string, name: string) {
+  async updateDescription(@Body() id: number, name: string) {
     return await this.taskService.updateTaskNameById(id, name);
   }
 
   @Put('/newStatus')
-  async updateStatus(@Body() id: string, name: string) {
+  async updateStatus(@Body() id: number, name: string) {
     return await this.taskService.updateTaskNameById(id, name);
   }
 
   @Put('/newDeadline')
-  async updateDeadline(@Body() id: string, name: string) {
+  async updateDeadline(@Body() id: number, name: string) {
     return await this.taskService.updateTaskNameById(id, name);
   }
 }
