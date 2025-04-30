@@ -3,7 +3,7 @@ import { IsString } from 'class-validator';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id: number;
   @Column()
   @IsString()

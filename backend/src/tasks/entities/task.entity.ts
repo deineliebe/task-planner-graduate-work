@@ -3,7 +3,7 @@ import { IsString, IsOptional, IsDateString } from 'class-validator';
 
 @Entity()
 export class Tasks {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id: number;
   @Column({ nullable: true })
   @IsString()
