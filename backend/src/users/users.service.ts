@@ -8,8 +8,8 @@ import { userRepository } from '../repository/userRepository';
 export class UserService {
   constructor(private readonly repository: userRepository) {}
 
-  async getUser(email: string): Promise<User> {
-    const userInfo = await this.repository.getUserByEmail(email);
+  async getUser(email: string, password: string): Promise<User> {
+    const userInfo = await this.repository.getUserByEmail(email, password);
     return userInfo;
   }
 

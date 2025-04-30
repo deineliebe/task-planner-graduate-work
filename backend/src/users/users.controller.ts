@@ -1,4 +1,4 @@
-import { Controller, Body, Get, Put } from '@nestjs/common';
+import { Controller, Body, Get, Put, Query } from '@nestjs/common';
 import { UserService } from './users.service';
 
 @Controller('/user')
@@ -6,8 +6,8 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get('/getDataByEmail')
-  async findUserInfoByEmail(email: string) {
-    return await this.userService.getUser(email);
+  async findUserInfoByEmail(@Query() email: string, password: string) {
+    return await this.userService.getUser(email, password);
   }
 
   @Put('/newEmail')

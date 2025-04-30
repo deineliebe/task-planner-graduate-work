@@ -7,7 +7,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     bufferLogs: true,
   });
-  app.setGlobalPrefix('api/afisha');
+  app.setGlobalPrefix('api');
   app.enableCors();
   app.useLogger(new TskvLogger());
   await app.listen(process.env.BACKEND_PORT);

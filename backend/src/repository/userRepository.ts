@@ -8,9 +8,10 @@ export class userRepository {
   constructor(
     @InjectRepository(User) private repository: Repository<User>) {}
 
-  async getUserByEmail(email: string): Promise<User> {
+  async getUserByEmail(email: string, password: string): Promise<User> {
     return this.repository.findOneBy({
       email: email,
+      password: password,
     });
   }
 
