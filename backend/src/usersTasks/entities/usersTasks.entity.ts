@@ -1,9 +1,9 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 import { IsNumber } from 'class-validator';
 
 @Entity()
 export class UserTasks {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   taskId: number;
 
   @Column()
