@@ -14,10 +14,6 @@ import { UsersTasksModule } from './usersTasks/usersTasks.module';
       isGlobal: true,
       cache: true,
     }),
-    ServeStaticModule.forRoot({
-      rootPath: path.join(__dirname, '..', 'public'),
-      renderPath: '/content/',
-    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DATABASE_HOST || 'db',

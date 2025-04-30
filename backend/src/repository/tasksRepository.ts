@@ -13,8 +13,8 @@ export class tasksRepository {
     return this.repository.query(`SELECT user_id, id, name, description, deadline, created_at, status
       FROM userTasks LEFT JOIN tasks
       ON userTasks.task_id = tasks.id
-      WHERE user_id = ${userId}
-      ORDER BY created_at DESC;`);
+      WHERE user_id = $1
+      ORDER BY created_at DESC;`, [userId]);
   }
 
   async getHotTasks(userId: number): Promise<Tasks[]> {

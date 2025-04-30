@@ -7,7 +7,7 @@ export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
   @Get('/new')
-  async findNewTasks(@Query() id: number) {
+  async findNewTasks(@Query('id') id: number) {
     return await this.taskService.getNewTasks(id);
   }
 
