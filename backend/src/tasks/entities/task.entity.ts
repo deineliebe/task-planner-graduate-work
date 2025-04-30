@@ -7,6 +7,7 @@ export class Tasks {
   id: number;
   @Column()
   @IsString()
+  @IsOptional()
   name: string;
   @Column()
   @IsString()
