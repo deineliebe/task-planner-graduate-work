@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Tasks } from '../tasks/entities/task.entity';
 import { TaskDTO } from '../tasks/dto/tasks.dto';
+import { Status } from '../tasks/entities/status.entity';
 
 @Injectable()
 export class tasksRepository {
@@ -51,7 +52,7 @@ export class tasksRepository {
     await this.repository.update({ id: id }, { description: description });
   }
 
-  async updateTaskStatusById(id: number, status: string) {
+  async updateTaskStatusById(id: number, status: Status) {
     await this.repository.update({ id: id }, { status: status });
   }
 

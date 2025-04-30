@@ -1,6 +1,6 @@
 import { Entity, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { User } from '../../user/entities/user.entity';
-import { Task } from '../../tasks/entities/task.entity';
+import { Tasks } from '../../tasks/entities/task.entity';
 
 @Entity()
 export class UserTask {
@@ -14,7 +14,7 @@ export class UserTask {
   @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @ManyToOne(() => Task, (task) => task.id)
+  @ManyToOne(() => Tasks, (task) => task.id)
   @JoinColumn({ name: 'task_id' })
-  task: Task;
+  task: Tasks;
 }

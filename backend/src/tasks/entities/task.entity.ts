@@ -1,9 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, CreateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
-import { IsString, IsOptional, IsDateString } from 'class-validator';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { Status } from './status.entity';
 
 @Entity()
-export class Task {
+export class Tasks {
   @PrimaryGeneratedColumn()
   id: number;
 
