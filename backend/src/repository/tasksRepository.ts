@@ -10,8 +10,8 @@ export class tasksRepository {
     @InjectRepository(Tasks) private repository: Repository<Tasks>) {}
 
   async getNewTasks(userId: number): Promise<Tasks[]> {
-    return this.repository.query(`SELECT user_id, id, name, description, deadline, created_at, status
-      FROM userTasks LEFT JOIN tasks
+    return this.repository.query(`SELECT user_id AS id, name, description, deadline, created_at, status
+      FROM userTasks FULL JOIN tasks
       ON userTasks.task_id = tasks.id
       WHERE user_id = $1
       ORDER BY created_at DESC;`, [userId]);
