@@ -11,24 +11,24 @@ export class tasksRepository {
 
   async getNewTasks(userId: number): Promise<Tasks[]> {
     return this.repository.query(`SELECT user_id AS id, name, description, deadline, created_at, status
-      FROM userTasks FULL JOIN tasks
-      ON userTasks.task_id = tasks.id
+      FROM user_tasks FULL JOIN tasks
+      ON user_tasks.task_id = tasks.id
       WHERE user_id = $1
       ORDER BY created_at DESC;`, [userId]);
   }
 
   async getHotTasks(userId: number): Promise<Tasks[]> {
     return this.repository.query(`SELECT user_id, id, name, description, deadline, created_at, status
-      FROM userTasks LEFT JOIN tasks
-      ON userTasks.task_id = tasks.id
+      FROM user_tasks LEFT JOIN tasks
+      ON user_tasks.task_id = tasks.id
       WHERE user_id = ${userId} AND deadline >= CURRENT_DATE
       ORDER BY deadline ASC;`);
   }
 
   async getTasksByStatus(userId: number, status: string): Promise<Tasks[]> {
     return this.repository.query(`SELECT user_id, id, name, description, deadline, created_at, status
-      FROM userTasks LEFT JOIN tasks
-      ON userTasks.task_id = tasks.id
+      FROM user_tasks LEFT JOIN tasks
+      ON user_tasks.task_id = tasks.id
       WHERE user_id = ${userId} AND status = ${status}
       ORDER BY created_at DESC;`);
   }

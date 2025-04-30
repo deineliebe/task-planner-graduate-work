@@ -1,25 +1,25 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, CreateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { IsString, IsOptional, IsDateString } from 'class-validator';
+import { Status } from './status.entity';
 
 @Entity()
-export class Tasks {
+export class Task {
   @PrimaryGeneratedColumn()
   id: number;
-  @Column({ nullable: true })
-  @IsString()
+
+  @Column({ length: 256 })
   name: string;
-  @Column({ nullable: true })
-  @IsString()
-  @IsOptional()
+
+  @Column({ length: 256, nullable: true })
   description: string;
-  @Column({ nullable: true })
-  @IsString()
-  status: string;
+
   @Column({ type: 'date', nullable: true })
-  @IsDateString()
-  @IsOptional()
-  deadline: Date | null;
-  @Column({ type: 'date', nullable: true })
-  @IsDateString()
+  deadline: Date;
+
+  @CreateDateColumn({ type: 'timestamptz' })
   created_at: Date;
+
+  @ManyToOne(() => Status, (status) => status.status)
+  @JoinColumn({ name: 'status' })
+  status: Status;
 }

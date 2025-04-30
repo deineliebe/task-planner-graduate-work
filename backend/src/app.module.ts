@@ -5,7 +5,7 @@ import * as path from 'node:path';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { configProvider } from './app.config.provider';
 import { TaskModule } from './tasks/tasks.module';
-import { UserModule } from './authorizationdata/authorizationdata.module';
+import { UserModule } from './user/authorizationdata.module';
 import { UsersTasksModule } from './usersTasks/usersTasks.module';
 
 @Module({
