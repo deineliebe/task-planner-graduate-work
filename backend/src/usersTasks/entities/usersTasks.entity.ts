@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { IsNumber } from 'class-validator';
 import { User } from '../../users/entities/user.entity';
 import { Tasks } from '../../tasks/entities/task.entity';
@@ -6,13 +6,19 @@ import { Tasks } from '../../tasks/entities/task.entity';
 @Entity()
 export class UserTasks {
   @PrimaryColumn()
-  @Column()
   @IsNumber()
-  @ManyToOne(() => Tasks, (task) => task.id)
-  taskId: number;
+  taskId: number;  // Foreign key to Tasks
+
   @PrimaryColumn()
-  @Column()
   @IsNumber()
+  userId: number;  // Foreign key to User
+
+  // Relationships
+  @ManyToOne(() => Tasks, (task) => task.id)
+  @JoinColumn({ name: 'taskId' })
+  task: Tasks;
+
   @ManyToOne(() => User, (user) => user.id)
-  userId: number;
+  @JoinColumn({ name: 'userId' })
+  user: User;
 }
