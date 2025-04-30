@@ -1,4 +1,4 @@
 export class UserTasksDTO {
-  taskId: number;
-  userId: number;
+  task_id: number;
+  user_id: number;
 }
