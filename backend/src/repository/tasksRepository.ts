@@ -9,7 +9,7 @@ export class tasksRepository {
   constructor(
     @InjectRepository(Tasks) private repository: Repository<Tasks>) {}
 
-  async getNewTasks(userId: string): Promise<Tasks[]> {
+  async getNewTasks(userId: number): Promise<Tasks[]> {
     return this.repository.query(`SELECT user_id, id, name, description, deadline, created_at, status
       FROM userTasks LEFT JOIN tasks
       ON userTasks.task_id = tasks.id
@@ -17,7 +17,7 @@ export class tasksRepository {
       ORDER BY created_at DESC;`);
   }
 
-  async getHotTasks(userId: string): Promise<Tasks[]> {
+  async getHotTasks(userId: number): Promise<Tasks[]> {
     return this.repository.query(`SELECT user_id, id, name, description, deadline, created_at, status
       FROM userTasks LEFT JOIN tasks
       ON userTasks.task_id = tasks.id
@@ -25,7 +25,7 @@ export class tasksRepository {
       ORDER BY deadline ASC;`);
   }
 
-  async getTasksByStatus(userId: string, status: string): Promise<Tasks[]> {
+  async getTasksByStatus(userId: number, status: string): Promise<Tasks[]> {
     return this.repository.query(`SELECT user_id, id, name, description, deadline, created_at, status
       FROM userTasks LEFT JOIN tasks
       ON userTasks.task_id = tasks.id

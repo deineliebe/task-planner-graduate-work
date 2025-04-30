@@ -10,18 +10,18 @@ import { TaskDTO } from './dto/tasks.dto';
 export class TaskService {
   constructor(private readonly repository: tasksRepository) {}
 
-  async getNewTasks(): Promise<Tasks[]> {
-    const tasks = await this.repository.getNewTasks();
+  async getNewTasks(id: number): Promise<Tasks[]> {
+    const tasks = await this.repository.getNewTasks(id);
     return tasks;
   }
 
-  async getHotTasks(): Promise<Tasks[]> {
-    const tasks = await this.repository.getHotTasks();
+  async getHotTasks(id: number): Promise<Tasks[]> {
+    const tasks = await this.repository.getHotTasks(id);
     return tasks;
   }
 
-  async getTasksByStatus(status: string): Promise<Tasks[]> {
-    const tasks = await this.repository.getTasksByStatus(status);
+  async getTasksByStatus(id: number, status: string): Promise<Tasks[]> {
+    const tasks = await this.repository.getTasksByStatus(id, status);
     return tasks;
   }
 

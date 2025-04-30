@@ -7,18 +7,18 @@ export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
   @Get('/new')
-  async findNewTasks() {
-    return await this.taskService.getNewTasks();
+  async findNewTasks(@Query() id: number) {
+    return await this.taskService.getNewTasks(id);
   }
 
   @Get('/hot')
-  async findHotTasks() {
-    return await this.taskService.getHotTasks();
+  async findHotTasks(@Query() id: number) {
+    return await this.taskService.getHotTasks(id);
   }
 
   @Get('/status')
-  async findTasksByStatus(@Query() status: string) {
-    return await this.taskService.getTasksByStatus(status);
+  async findTasksByStatus(@Query() id: number, status: string) {
+    return await this.taskService.getTasksByStatus(id, status);
   }
 
   @Post('/add')
