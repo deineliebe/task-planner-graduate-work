@@ -5,22 +5,21 @@ import { IsString, IsOptional, IsDateString } from 'class-validator';
 export class Tasks {
   @PrimaryGeneratedColumn('uuid')
   id: number;
-  @Column()
+  @Column({ nullable: true })
   @IsString()
-  @IsOptional()
   name: string;
-  @Column()
+  @Column({ nullable: true })
   @IsString()
   @IsOptional()
   description: string;
-  @Column()
+  @Column({ nullable: true })
   @IsString()
   status: string;
-  @Column({ type: 'date' })
+  @Column({ type: 'date', nullable: true })
   @IsDateString()
   @IsOptional()
   deadline: Date | null;
-  @Column({ type: 'date' })
+  @Column({ type: 'date', nullable: true })
   @IsDateString()
   created_at: Date;
 }
