@@ -5,6 +5,7 @@ import {
 import { tasksRepository } from '../repository/tasksRepository';
 import { Tasks } from './entities/task.entity';
 import { TaskDTO } from './dto/tasks.dto';
+import { Status } from './entities/status.entity';
 
 @Injectable()
 export class TaskService {
@@ -39,7 +40,7 @@ export class TaskService {
     return await this.repository.addTask(task);
   }
 
-  async updateTaskNameById(id: number, name: string) {
+  async updateTaskNameById(id: number, p0: Status, name: string) {
     return await this.repository.updateTaskNameById(id, name);
   }
 

@@ -3,7 +3,7 @@ import { User } from '../../user/entities/user.entity';
 import { Tasks } from '../../tasks/entities/task.entity';
 
 @Entity()
-export class UserTask {
+export class UserTasks {
   @PrimaryColumn()
   user_id: number;
 

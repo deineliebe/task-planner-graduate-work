@@ -20,5 +20,5 @@ export class Tasks {
 
   @ManyToOne(() => Status, (status) => status.status)
   @JoinColumn({ name: 'status' })
-  status: Status;
+  status: string;
 }

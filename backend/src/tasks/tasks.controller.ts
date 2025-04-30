@@ -1,6 +1,7 @@
 import { Controller, Post, Body, Get, Query, Put } from '@nestjs/common';
 import { TaskService } from './tasks.service';
 import { TaskDTO } from './dto/tasks.dto';
+import { Status } from './entities/status.entity';
 
 @Controller('/tasks')
 export class TaskController {
@@ -32,13 +33,13 @@ export class TaskController {
   }
 
   @Put('/newDescription')
-  async updateDescription(@Body() id: number, name: string) {
-    return await this.taskService.updateTaskNameById(id, name);
+  async updateDescription(@Body() id: number, description: string) {
+    return await this.taskService.updateTaskNameById(id, description);
   }
 
   @Put('/newStatus')
-  async updateStatus(@Body() id: number, name: string) {
-    return await this.taskService.updateTaskNameById(id, name);
+  async updateStatus(@Body() id: number, status: string) {
+    return await this.taskService.updateTaskNameById(id, status);
   }
 
   @Put('/newDeadline')

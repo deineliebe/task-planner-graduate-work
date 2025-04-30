@@ -52,7 +52,7 @@ export class tasksRepository {
     await this.repository.update({ id: id }, { description: description });
   }
 
-  async updateTaskStatusById(id: number, status: Status) {
+  async updateTaskStatusById(id: number, status: string) {
     await this.repository.update({ id: id }, { status: status });
   }
 
