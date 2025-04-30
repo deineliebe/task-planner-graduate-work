@@ -9,28 +9,28 @@ export class tasksRepository {
   constructor(
     @InjectRepository(Tasks) private repository: Repository<Tasks>) {}
 
-  async getNewTasks(): Promise<Tasks[]> {
-    return this.repository.find({
-      order: {
-        created_at: "DESC",
-      },
-    });
+  async getNewTasks(userId: string): Promise<Tasks[]> {
+    return this.repository.query(`SELECT user_id, id, name, description, deadline, created_at, status
+      FROM userTasks LEFT JOIN tasks
+      ON userTasks.task_id = tasks.id
+      WHERE user_id = ${userId}
+      ORDER BY created_at DESC;`);
   }
 
-  async getHotTasks(): Promise<Tasks[]> {
-    return this.repository.find({
-      order: {
-        deadline: "DESC",
-      },
-    });
+  async getHotTasks(userId: string): Promise<Tasks[]> {
+    return this.repository.query(`SELECT user_id, id, name, description, deadline, created_at, status
+      FROM userTasks LEFT JOIN tasks
+      ON userTasks.task_id = tasks.id
+      WHERE user_id = ${userId} AND deadline >= CURRENT_DATE
+      ORDER BY deadline ASC;`);
   }
 
-  async getTasksByStatus(status: string): Promise<Tasks[]> {
-    return this.repository.find({
-      where: {
-        status: status,
-      },
-    });
+  async getTasksByStatus(userId: string, status: string): Promise<Tasks[]> {
+    return this.repository.query(`SELECT user_id, id, name, description, deadline, created_at, status
+      FROM userTasks LEFT JOIN tasks
+      ON userTasks.task_id = tasks.id
+      WHERE user_id = ${userId} AND status = ${status}
+      ORDER BY created_at DESC;`);
   }
 
   async addTask(task: TaskDTO) {
