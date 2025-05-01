@@ -55,7 +55,7 @@ const TaskFull: FC = () => {
 					`.${formStyles['form-button-in-bar-active']}`
 				) as HTMLButtonElement
 			)?.innerText,
-			last_update: task?.last_update
+			created_at: task?.created_at
 		};
 		console.log(newTask);
 	};

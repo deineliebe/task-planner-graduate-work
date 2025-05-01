@@ -7,5 +7,5 @@ type TTaskInfo = {
 	id: number;
 	name: string;
 	status: string;
-	last_update: Date;
+	created_at: Date;
 };

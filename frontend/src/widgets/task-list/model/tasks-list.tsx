@@ -10,7 +10,7 @@ export type ListTaskProps = {
 export const TasksList: FC<ListTaskProps> = ({ tasks, deleteTask }) => {
 	const taskByDate = [...tasks].sort(
 		(a, b) =>
-			new Date(b.last_update).getTime() - new Date(a.last_update).getTime()
+			new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
 	);
 	return <TasksListUI taskByDate={taskByDate} deleteTask={deleteTask} />;
 };
