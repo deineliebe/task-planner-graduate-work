@@ -4,7 +4,7 @@ import {
 } from '@nestjs/common';
 import { tasksRepository } from '../repository/tasksRepository';
 import { Tasks } from './entities/task.entity';
-import { TaskDTO } from './dto/tasks.dto';
+import { TaskDTO, TaskFullDTO } from './dto/tasks.dto';
 
 @Injectable()
 export class TaskService {
@@ -49,20 +49,8 @@ export class TaskService {
     return await this.repository.addTask(task);
   }
 
-  async updateTaskNameById(id: number, name: string) {
-    return await this.repository.updateTaskNameById(id, name);
-  }
-
-  async updateTaskDescriptionById(id: number, description: string) {
-    return await this.repository.updateTaskDescriptionById(id, description);
-  }
-
-  async updateTaskStatusById(id: number, status: string) {
-    return await this.repository.updateTaskStatusById(id, status);
-  }
-
-  async updateTaskDeadlineById(id: number, deadline: Date | null) {
-    return await this.repository.updateTaskDeadlineById(id, deadline);
+  async updateTask(task: TaskFullDTO) {
+    return await this.repository.updateTask(task);
   }
 
   async deleteTask(id: number) {

@@ -53,20 +53,8 @@ export class tasksRepository {
     });
   }
 
-  async updateTaskNameById(id: number, name: string) {
-    await this.repository.update({ id: id }, { name: name });
-  }
-
-  async updateTaskDescriptionById(id: number, description: string) {
-    await this.repository.update({ id: id }, { description: description });
-  }
-
-  async updateTaskStatusById(id: number, status: string) {
-    await this.repository.update({ id: id }, { status: status });
-  }
-
-  async updateTaskDeadlineById(id: number, deadline: Date | null) {
-    await this.repository.update({ id: id }, { deadline: deadline });
+  async updateTask(task: Tasks) {
+    await this.repository.save(task);
   }
 
   async deleteTask(id: number) {

@@ -1,6 +1,6 @@
-import { Controller, Post, Body, Get, Query, Put } from '@nestjs/common';
+import { Controller, Post, Body, Get, Query, Put, Delete } from '@nestjs/common';
 import { TaskService } from './tasks.service';
-import { TaskDTO } from './dto/tasks.dto';
+import { TaskDTO, TaskFullDTO } from './dto/tasks.dto';
 
 @Controller('/tasks')
 export class TaskController {
@@ -31,23 +31,13 @@ export class TaskController {
     return await this.taskService.addTask(task);
   }
 
-  @Put('/newName')
-  async updateName(@Body() id: number, name: string) {
-    return await this.taskService.updateTaskNameById(id, name);
+  @Put('/update')
+  async updateName(@Body() task: TaskFullDTO) {
+    return await this.taskService.updateTask(task);
   }
 
-  @Put('/newDescription')
-  async updateDescription(@Body() id: number, description: string) {
-    return await this.taskService.updateTaskNameById(id, description);
-  }
-
-  @Put('/newStatus')
-  async updateStatus(@Body() id: number, status: string) {
-    return await this.taskService.updateTaskNameById(id, status);
-  }
-
-  @Put('/newDeadline')
-  async updateDeadline(@Body() id: number, name: string) {
-    return await this.taskService.updateTaskNameById(id, name);
+  @Delete('/remove')
+  async deleteTask(@Body() id: number) {
+    return await this.taskService.deleteTask(id);
   }
 }
