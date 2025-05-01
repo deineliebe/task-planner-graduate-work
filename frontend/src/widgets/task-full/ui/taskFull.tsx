@@ -93,7 +93,7 @@ const TaskFull: FC<TasksProps> = ({ userId }) => {
 						type='text'
 						id='task_name'
 						name='task_name'
-						className={`${inputStyles.input} ${taskFullStyles['task-text']}`}
+						className={`${taskFullStyles['task-text']}`}
 						defaultValue={task?.name}
 						required
 					/>
@@ -108,7 +108,7 @@ const TaskFull: FC<TasksProps> = ({ userId }) => {
 					<textarea
 						id='task_description'
 						name='task_description'
-						className={`${inputStyles.input} ${taskFullStyles['task-text']}`}
+						className={`${taskFullStyles['task-text']}`}
 						defaultValue={task?.description}
 					/>
 				</fieldset>

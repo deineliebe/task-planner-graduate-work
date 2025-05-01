@@ -1,8 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import * as path from 'node:path';
-import { ServeStaticModule } from '@nestjs/serve-static';
 import { configProvider } from './app.config.provider';
 import { TaskModule } from './tasks/tasks.module';
 import { UserModule } from './user/authorization_data.module';

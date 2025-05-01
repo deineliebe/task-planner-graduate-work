@@ -33,7 +33,6 @@ const Login: FC<AuthorizationProps> = ({ setUserId }) => {
 		dispatch(getUser(userData));
 	};
 	useEffect(() => {
-		console.log();
 		if (userInfo?.id) {
 			setUserId(userInfo.id);
 		}

@@ -1,5 +1,5 @@
-import { TTask, TUserInfo } from '../model/types';
-import { TTasksResponse, TUsersResponse } from './types';
+import { TNewTask, TTask, TUserInfo } from '../model/types';
+import { TTasksResponse } from './types';
 
 const URL = 'http://app.smalltaskplanner.ru/api';
 
@@ -22,28 +22,17 @@ export const getTaskApi = (id: number) =>
 			return Promise.reject(data);
 		});
 
-export const addTasksApi = (data: TTask[]) =>
-	fetch(`${URL}/tasks`, {
+export const addNewTask = (data: TNewTask) =>
+	fetch(`${URL}/tasks/add`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8'
 		} as HeadersInit,
-		body: JSON.stringify({
-			data: data,
-			success: true
-		})
+		body: JSON.stringify(data)
 	})
 		.then((res) => checkResponse<TTasksResponse>(res))
 		.then((data) => {
-			if (data?.success) return data;
-			return Promise.reject(data);
-		});
-
-export const getUsersApi = () =>
-	fetch(`${URL}/users`)
-		.then((res) => checkResponse<TUsersResponse>(res))
-		.then((data) => {
-			if (data?.success) return data;
+			if (data) return data;
 			return Promise.reject(data);
 		});
 
@@ -57,6 +46,6 @@ export const getUserInfo = (email: string, password: string) =>
 
 export const api = {
 	getUserTasksInfo,
-	getUsersApi,
+	addNewTask,
 	getUserInfo
 };

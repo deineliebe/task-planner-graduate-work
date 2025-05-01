@@ -33,7 +33,6 @@ const Header: FC<HeaderProps> = ({
 							onClick={(evt) => {
 								evt.preventDefault();
 								setUserId(null);
-								console.log(userId);
 							}}
 						>
 							Выйти

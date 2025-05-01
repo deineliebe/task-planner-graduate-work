@@ -7,6 +7,14 @@ export type TTask = {
 	created_at: Date;
 };
 
+export type TNewTask = {
+	name: string;
+	description: string;
+	status: string;
+	deadline: Date | null;
+	created_at: Date;
+};
+
 export type TUserInfo = {
 	id: number;
 	email: string;

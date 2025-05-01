@@ -2,7 +2,6 @@ import { FC, SyntheticEvent } from 'react';
 import addTaskStyles from './settings.module.css';
 import formStyles from '../../../shared/ui/form.module.css';
 import buttonStyles from '../../../shared/ui/button.module.css';
-import inputStyles from '../../../shared/ui/input.module.css';
 import styles from '../../../shared/ui/styles.module.css';
 
 import 'react-datepicker/dist/react-datepicker.css';
@@ -52,7 +51,7 @@ const Settings: FC<SettingsProps> = ({ setShowModal }) => {
 							type='text'
 							id='settings_email'
 							name='settings_email'
-							className={`${inputStyles.input} ${addTaskStyles['add-task-input']}`}
+							className={`${addTaskStyles['add-task-input']}`}
 							required
 						/>
 					</fieldset>
@@ -67,7 +66,7 @@ const Settings: FC<SettingsProps> = ({ setShowModal }) => {
 							type='text'
 							id='settings_tg'
 							name='settings_tg'
-							className={`${inputStyles.input} ${addTaskStyles['add-task-input']}`}
+							className={`${addTaskStyles['add-task-input']}`}
 							required
 						/>
 					</fieldset>
@@ -82,7 +81,7 @@ const Settings: FC<SettingsProps> = ({ setShowModal }) => {
 							type='text'
 							id='settings_password'
 							name='settings_password'
-							className={`${inputStyles.input} ${addTaskStyles['add-task-input']}`}
+							className={`${addTaskStyles['add-task-input']}`}
 							required
 						/>
 					</fieldset>

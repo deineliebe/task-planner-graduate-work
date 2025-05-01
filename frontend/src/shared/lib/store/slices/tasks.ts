@@ -1,6 +1,6 @@
-import { addTasksApi, getUserTasksInfo } from '@/shared/api/api';
+import { addNewTask, getUserTasksInfo } from '@/shared/api/api';
 import { constantsMap } from '@/shared/model/constants';
-import { TTask } from '@/shared/model/types';
+import { TNewTask, TTask } from '@/shared/model/types';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export type TTaskState = {
@@ -20,7 +20,13 @@ export const getTasks = createAsyncThunk(
 	}
 );
 
-export const addTask = createAsyncThunk('/tasks/add', addTasksApi);
+export const addTask = createAsyncThunk(
+	'/tasks/add',
+	async (credentials: { newTask: TNewTask }) => {
+		console.log(credentials.newTask);
+		return await addNewTask(credentials.newTask);
+	}
+);
 
 export const taskSlice = createSlice({
 	name: constantsMap.slices.tasks,
@@ -38,7 +44,6 @@ export const taskSlice = createSlice({
 				state.error = action.error.message;
 			})
 			.addCase(getTasks.fulfilled, (state, action) => {
-				console.log(action.payload);
 				state.tasks = action.payload;
 				state.error = null;
 			})
@@ -46,10 +51,10 @@ export const taskSlice = createSlice({
 				state.error = null;
 			})
 			.addCase(addTask.rejected, (state, action) => {
+				console.log(state);
 				state.error = action.error.message;
 			})
-			.addCase(addTask.fulfilled, (state, action) => {
-				state.tasks = action.payload.data;
+			.addCase(addTask.fulfilled, (state) => {
 				state.error = null;
 			});
 	}

@@ -1,9 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import {
-	addTask,
-	getTaskData,
-	getTasks
-} from '@/shared/lib/store/slices/tasks';
+import { getTaskData, getTasks } from '@/shared/lib/store/slices/tasks';
 import { TasksList } from '@/widgets/task-list';
 import { TaskSubHeader } from '@/widgets/task-subheader';
 import { TasksListNav } from '@/widgets/task-list-nav';
@@ -23,7 +19,6 @@ const Tasks: FC<TasksProps> = ({ userId }) => {
 	const useAppDispatch = () => useDispatch<AppDispatch>();
 	const dispatch = useAppDispatch();
 	useEffect(() => {
-		console.log(userId);
 		if (userId) dispatch(getTasks({ userId }));
 		else router.push('/');
 	}, [showAddTaskModal]);
@@ -33,9 +28,7 @@ const Tasks: FC<TasksProps> = ({ userId }) => {
 		const newTasks: TTask[] = [];
 		tasks.forEach((task) => {
 			if (task.id !== id) newTasks.push(task);
-			console.log(task);
 		});
-		dispatch(addTask(newTasks));
 	};
 	tasks.map((task) => tasksIds.push(task.id));
 

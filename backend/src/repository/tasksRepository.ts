@@ -34,7 +34,8 @@ export class tasksRepository {
   }
 
   async addTask(task: TaskDTO) {
-    return this.repository.create(task);
+    return this.repository.query(`INSERT INTO tasks(name, description, deadline, created_at, status)
+      VALUES ($1, $2, $3, $4, $5);`, [task.name, task.description || null, task.deadline || null, task.created_at]);
   }
 
   async getTaskById(id: number): Promise<Tasks> {
