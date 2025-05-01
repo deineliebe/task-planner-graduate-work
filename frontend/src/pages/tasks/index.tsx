@@ -47,7 +47,7 @@ const Tasks: FC<TasksProps> = ({ userId }) => {
 					title={'Добавить задачу'}
 					onClose={() => setShowAddTaskModal(false)}
 				>
-					<AddNewForm tasks={tasks} setShowModal={setShowAddTaskModal} />
+					<AddNewForm setShowModal={setShowAddTaskModal} />
 				</Modal>
 			)}
 		</>
