@@ -54,7 +54,8 @@ export const taskSlice = createSlice({
 				console.log(state);
 				state.error = action.error.message;
 			})
-			.addCase(addTask.fulfilled, (state) => {
+			.addCase(addTask.fulfilled, (state, action) => {
+				console.log(action);
 				state.error = null;
 			});
 	}

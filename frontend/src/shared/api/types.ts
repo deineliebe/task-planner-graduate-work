@@ -5,7 +5,7 @@ type TServerResponse<T> = {
 } & T;
 
 export type TTasksResponse = TServerResponse<{
-	data: TTask[];
+	data: TTask;
 }>;
 
 export type TUsersResponse = TServerResponse<{
