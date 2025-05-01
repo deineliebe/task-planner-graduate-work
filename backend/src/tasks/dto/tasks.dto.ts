@@ -1,5 +1,3 @@
-import { Status } from "../entities/status.entity";
-
 export class TaskDTO {
   name: string;
   description: string;

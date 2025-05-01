@@ -18,7 +18,6 @@ export class Tasks {
   @CreateDateColumn({ type: 'timestamptz' })
   created_at: Date;
 
-  @ManyToOne(() => Status, (status) => status.status)
-  @JoinColumn({ name: 'status' })
+  @Column({ length: 256 })
   status: string;
 }

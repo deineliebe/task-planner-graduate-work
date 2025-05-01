@@ -5,7 +5,6 @@ import {
 import { tasksRepository } from '../repository/tasksRepository';
 import { Tasks } from './entities/task.entity';
 import { TaskDTO } from './dto/tasks.dto';
-import { Status } from './entities/status.entity';
 
 @Injectable()
 export class TaskService {
