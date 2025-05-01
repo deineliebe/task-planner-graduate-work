@@ -1,44 +1,31 @@
 import authorizationStyles from './registration.module.css';
-import styles from '../../../shared/ui/styles.module.css';
-import buttonStyles from '../../../shared/ui/button.module.css';
-import { FC, SyntheticEvent } from 'react';
+import { FC } from 'react';
 
 const Registration: FC = () => {
-	const handleSubmit = (e: SyntheticEvent) => {
-		e.preventDefault();
-		const userData = {
-			email: (document.getElementById('email') as HTMLInputElement)?.value,
-			password: (document.getElementById('password') as HTMLInputElement)?.value
-		};
-		console.log(userData);
-	};
 	return (
-		<>
-			<form
-				id='registration'
-				name='registration'
-				className={authorizationStyles.authorizationForm}
-			>
-				<label htmlFor='email'>E-mail</label>
-				<input type='text' id='email' name='email' required></input>
-				<label htmlFor='password'>Пароль</label>
-				<input type='text' id='password' name='password' required></input>
-				<label htmlFor='password'>Повторите пароль</label>
-				<input
-					type='text'
-					id='repeat-password'
-					name='repeat-password'
-					required
-				></input>
-				<button
-					type='submit'
-					className={`${buttonStyles.button} ${buttonStyles.buttonLarge} ${buttonStyles.buttonCommon} ${buttonStyles.isShadowed} ${styles.isClicked}`}
-					onClick={handleSubmit}
-				>
-					Зарегистрироваться
-				</button>
-			</form>
-		</>
+		<div className={authorizationStyles.authorizationForm}>
+			<p>
+				На данный момент регистрация на сайте доступна только через чат-бота
+			</p>
+			<p>
+				1. Перейди по ссылке{' '}
+				<a href='http://t.me/small_task_planner_bot'>
+					http://t.me/small_task_planner_bot
+				</a>
+			</p>
+			<p>2. Нажми на кнопку &quot;Настройки&quot;</p>
+			<p>3. Нажми на кнопку &quot;Поменять электронный адрес&quot;</p>
+			<p>4. Укажи свой адрес</p>
+			<p>5. На твою почту придёт письмо. Отправь полученный код боту</p>
+			<p>
+				6. На твою почту придёт письмо с паролем. Можешь использовать его для
+				входа на сайт
+			</p>
+			<p>
+				Если ты забудешь пароль, можешь использовать этот же алгоритм для
+				генерации нового!
+			</p>
+		</div>
 	);
 };
 
