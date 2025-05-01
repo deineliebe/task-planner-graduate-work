@@ -1,3 +1,5 @@
+/* eslint-disable eslint-comments/disable-enable-pair */
+/* eslint-disable import/no-unresolved */
 import { getTaskData, getTasks } from '@/shared/lib/store/slices/tasks';
 import { TTask } from '@/shared/model/types';
 import formStyles from '../../../shared/ui/form.module.css';

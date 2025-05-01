@@ -1,11 +1,17 @@
-import { FC, SyntheticEvent, useState } from 'react';
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable import/no-unresolved */
+import { FC, SyntheticEvent, useRef, useState } from 'react';
 import addTaskStyles from './addNewTaskForm.module.css';
 import formStyles from '../../../shared/ui/form.module.css';
 import buttonStyles from '../../../shared/ui/button.module.css';
 import styles from '../../../shared/ui/styles.module.css';
 import { useDispatch } from '@/shared/lib/store/store';
-import { addTask } from '@/shared/lib/store/slices/tasks';
-import { TNewTask } from '@/shared/model/types';
+import {
+	addTask,
+	addUserTask,
+	getLastTask
+} from '@/shared/lib/store/slices/tasks';
+import { TNewTask, TTask } from '@/shared/model/types';
 import DatePicker from 'react-datepicker';
 
 import 'react-datepicker/dist/react-datepicker.css';
@@ -13,9 +19,10 @@ import moment from 'moment';
 
 type AddNewFormProps = {
 	setShowModal: (showModal: boolean) => void;
+	userId: number | null;
 };
 
-const AddNewFormUI: FC<AddNewFormProps> = ({ setShowModal }) => {
+const AddNewFormUI: FC<AddNewFormProps> = ({ setShowModal, userId }) => {
 	const onStatusClick = (evt: React.MouseEvent) => {
 		document.body
 			.querySelector(`.${formStyles['form-button-in-bar-active']}`)
@@ -36,13 +43,14 @@ const AddNewFormUI: FC<AddNewFormProps> = ({ setShowModal }) => {
 	};
 	const dispatch = useDispatch();
 	const [startDate, setStartDate] = useState<Date | null>(null);
-	const handleSubmit = (e: SyntheticEvent) => {
+	const nameRef = useRef<HTMLInputElement>(null);
+	const descriptionRef = useRef<HTMLTextAreaElement>(null);
+	const handleSubmit = async (e: SyntheticEvent) => {
 		e.preventDefault();
+		const name = nameRef.current?.value || '';
 		const newTask: TNewTask = {
-			name: (document.getElementById('task_name') as HTMLInputElement)?.value,
-			description: (
-				document.getElementById('task_description') as HTMLInputElement
-			)?.value,
+			name: name,
+			description: descriptionRef.current?.value || null,
 			deadline: startDate ? moment(startDate).add(3, 'h').toISOString() : null,
 			status: (
 				document.body.querySelector(
@@ -52,7 +60,9 @@ const AddNewFormUI: FC<AddNewFormProps> = ({ setShowModal }) => {
 			created_at: new Date()
 		};
 		console.log(newTask);
-		dispatch(addTask({ newTask: newTask }));
+		dispatch(addTask({ newTask })).unwrap();
+		const lastTask: TTask[] = await dispatch(getLastTask({ name })).unwrap();
+		dispatch(addUserTask({ task_id: lastTask[0].id, user_id: userId || 0 }));
 		setShowModal(false);
 	};
 	return (
@@ -82,6 +92,7 @@ const AddNewFormUI: FC<AddNewFormProps> = ({ setShowModal }) => {
 							type='text'
 							id='task_name'
 							name='task_name'
+							ref={nameRef}
 							className={`${addTaskStyles['add-task-input']}`}
 							required
 						/>
@@ -96,6 +107,7 @@ const AddNewFormUI: FC<AddNewFormProps> = ({ setShowModal }) => {
 						<textarea
 							id='task_description'
 							name='task_description'
+							ref={descriptionRef}
 							className={`${addTaskStyles['add-task-input']}`}
 						/>
 					</fieldset>

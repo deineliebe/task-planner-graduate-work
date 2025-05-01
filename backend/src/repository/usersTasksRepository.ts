@@ -10,6 +10,7 @@ export class usersTasksRepository {
     @InjectRepository(UserTasks) private repository: Repository<UserTasks>) {}
 
     async addTask(data: UserTasksDTO) {
-      return this.repository.create(data);
+      return this.repository.query(`INSERT INTO user_tasks(user_id, task_id)
+        VALUES ($1, $2);`, [data.user_id, data.task_id]);
     }
 }

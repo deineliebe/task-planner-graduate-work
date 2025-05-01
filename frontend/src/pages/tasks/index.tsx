@@ -1,3 +1,5 @@
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable import/no-unresolved */
 import { FC, useEffect, useState } from 'react';
 import { getTaskData, getTasks } from '@/shared/lib/store/slices/tasks';
 import { TasksList } from '@/widgets/task-list';
@@ -47,7 +49,7 @@ const Tasks: FC<TasksProps> = ({ userId }) => {
 					title={'Добавить задачу'}
 					onClose={() => setShowAddTaskModal(false)}
 				>
-					<AddNewForm setShowModal={setShowAddTaskModal} />
+					<AddNewForm setShowModal={setShowAddTaskModal} userId={userId} />
 				</Modal>
 			)}
 		</>

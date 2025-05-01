@@ -1,15 +1,24 @@
-import { addNewTask, getUserTasksInfo } from '@/shared/api/api';
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable import/no-unresolved */
+import {
+	addNewTask,
+	getUserTasksInfo,
+	getLastTaskInfo,
+	addNewUserTask
+} from '@/shared/api/api';
 import { constantsMap } from '@/shared/model/constants';
-import { TNewTask, TTask } from '@/shared/model/types';
+import { TNewTask, TTask, TUserTask } from '@/shared/model/types';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export type TTaskState = {
 	tasks: TTask[];
+	lastTask: TTask[];
 	error: string | null | undefined;
 };
 
 export const initialTaskState: TTaskState = {
 	tasks: [],
+	lastTask: [],
 	error: null
 };
 
@@ -17,6 +26,13 @@ export const getTasks = createAsyncThunk(
 	'/tasks/get',
 	async (credentials: { userId: number }) => {
 		return await getUserTasksInfo(credentials.userId);
+	}
+);
+
+export const getLastTask = createAsyncThunk(
+	'/tasks/getLast',
+	async (credentials: { name: string }) => {
+		return await getLastTaskInfo(credentials.name);
 	}
 );
 
@@ -28,12 +44,20 @@ export const addTask = createAsyncThunk(
 	}
 );
 
+export const addUserTask = createAsyncThunk(
+	'/usersTasks/add',
+	async (userTask: TUserTask) => {
+		return await addNewUserTask(userTask);
+	}
+);
+
 export const taskSlice = createSlice({
 	name: constantsMap.slices.tasks,
 	initialState: initialTaskState,
 	reducers: {},
 	selectors: {
-		getTaskData: (state) => state.tasks
+		getTaskData: (state) => state.tasks,
+		getLastTaskData: (state) => state.lastTask
 	},
 	extraReducers: (builder) => {
 		builder
@@ -47,6 +71,17 @@ export const taskSlice = createSlice({
 				state.tasks = action.payload;
 				state.error = null;
 			})
+			.addCase(getLastTask.pending, (state) => {
+				state.lastTask = [];
+				state.error = null;
+			})
+			.addCase(getLastTask.rejected, (state, action) => {
+				state.error = action.error.message;
+			})
+			.addCase(getLastTask.fulfilled, (state, action) => {
+				state.lastTask = action.payload;
+				state.error = null;
+			})
 			.addCase(addTask.pending, (state) => {
 				state.error = null;
 			})
@@ -54,8 +89,17 @@ export const taskSlice = createSlice({
 				console.log(state);
 				state.error = action.error.message;
 			})
-			.addCase(addTask.fulfilled, (state, action) => {
-				console.log(action);
+			.addCase(addTask.fulfilled, (state) => {
+				state.error = null;
+			})
+			.addCase(addUserTask.pending, (state) => {
+				state.error = null;
+			})
+			.addCase(addUserTask.rejected, (state, action) => {
+				console.log(state);
+				state.error = action.error.message;
+			})
+			.addCase(addUserTask.fulfilled, (state) => {
 				state.error = null;
 			});
 	}
@@ -63,6 +107,6 @@ export const taskSlice = createSlice({
 
 export const {} = taskSlice.actions;
 
-export const { getTaskData } = taskSlice.selectors;
+export const { getTaskData, getLastTaskData } = taskSlice.selectors;
 export const taskReducer = taskSlice.reducer;
 export const taskName = taskSlice.name;

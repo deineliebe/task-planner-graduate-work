@@ -1,3 +1,5 @@
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable import/no-unresolved */
 import authorizationStyles from './authorization.module.css';
 import styles from '../../../shared/ui/styles.module.css';
 import buttonStyles from '../../../shared/ui/button.module.css';
@@ -15,13 +17,13 @@ const Login: FC<AuthorizationProps> = ({ setUserId }) => {
 	const dispatch = useAppDispatch();
 	const userInfo = useSelector(getData);
 	const emailRef = useRef<HTMLInputElement>(null);
+	const passwordRef = useRef<HTMLInputElement>(null);
 	dispatch(
 		getUser({
 			email: '',
 			password: ''
 		})
 	);
-	const passwordRef = useRef<HTMLInputElement>(null);
 	const handleSubmit = (e: SyntheticEvent) => {
 		e.preventDefault();
 		const userData = {

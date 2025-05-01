@@ -1,4 +1,4 @@
-import { TNewTask, TTask, TUserInfo } from '../model/types';
+import { TNewTask, TTask, TUserInfo, TUserTask } from '../model/types';
 import { TTasksResponse } from './types';
 
 const URL = 'http://app.smalltaskplanner.ru/api';
@@ -14,11 +14,11 @@ export const getUserTasksInfo = (id: number) =>
 			return Promise.reject(data);
 		});
 
-export const getTaskApi = (id: number) =>
-	fetch(`${URL}/tasks/${id}`)
-		.then((res) => checkResponse<TTasksResponse>(res))
+export const getLastTaskInfo = (name: string) =>
+	fetch(`${URL}/tasks/last?name=${name}`)
+		.then((res) => checkResponse<TTask[]>(res))
 		.then((data) => {
-			if (data?.success) return data;
+			if (data) return data;
 			return Promise.reject(data);
 		});
 
@@ -36,6 +36,20 @@ export const addNewTask = (data: TNewTask) =>
 			return Promise.reject(data);
 		});
 
+export const addNewUserTask = (data: TUserTask) =>
+	fetch(`${URL}/usersTasks/add`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8'
+		} as HeadersInit,
+		body: JSON.stringify(data)
+	})
+		.then((res) => checkResponse<TUserTask>(res))
+		.then((data) => {
+			if (data) return data;
+			return Promise.reject(data);
+		});
+
 export const getUserInfo = (email: string, password: string) =>
 	fetch(`${URL}/user/getDataByEmail?email=${email}&password=${password}`)
 		.then((res) => checkResponse<TUserInfo>(res))
@@ -46,6 +60,7 @@ export const getUserInfo = (email: string, password: string) =>
 
 export const api = {
 	getUserTasksInfo,
+	getLastTaskInfo,
 	addNewTask,
 	getUserInfo
 };
