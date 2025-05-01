@@ -51,7 +51,7 @@ const AddNewFormUI: FC<AddNewFormProps> = ({ tasks, setShowModal }) => {
 					`.${formStyles['form-button-in-bar-active']}`
 				) as HTMLButtonElement
 			)?.innerText,
-			last_update: new Date()
+			created_at: new Date()
 		};
 		const newTasks: TTask[] = [];
 		tasks.forEach((task) => {
