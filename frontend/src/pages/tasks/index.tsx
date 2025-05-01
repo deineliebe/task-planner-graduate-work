@@ -23,7 +23,7 @@ const Tasks: FC<TasksProps> = ({ userId }) => {
 	useEffect(() => {
 		if (userId) dispatch(getTasks({ userId }));
 		else router.push('/');
-	}, [dispatch]);
+	}, [dispatch, userId, showAddTaskModal]);
 	const tasks: TTask[] = useSelector(getTaskData);
 	const tasksIds: number[] = [];
 	const deleteTask = (id: number) => {

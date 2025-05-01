@@ -11,7 +11,7 @@ import {
 	addUserTask,
 	getLastTask
 } from '@/shared/lib/store/slices/tasks';
-import { TNewTask, TTask } from '@/shared/model/types';
+import { TNewTask } from '@/shared/model/types';
 import DatePicker from 'react-datepicker';
 
 import 'react-datepicker/dist/react-datepicker.css';
