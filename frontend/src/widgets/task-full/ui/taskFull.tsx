@@ -9,12 +9,11 @@ import { FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import taskFullStyles from './taskFull.module.css';
-import store from '@/shared/lib/store/store';
+import { AppDispatch } from '@/shared/lib/store/store';
 
 const TaskFull: FC = () => {
 	const router = useRouter();
 	const { id } = router.query;
-	type AppDispatch = typeof store.dispatch;
 	const useAppDispatch = () => useDispatch<AppDispatch>();
 	const dispatch = useAppDispatch();
 	dispatch(getTasks());

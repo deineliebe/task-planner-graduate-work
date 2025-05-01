@@ -1,5 +1,5 @@
 import { Controller, Body, Get, Put, Query } from '@nestjs/common';
-import { UserService } from './authorizationdata.service';
+import { UserService } from './authorization_data.service';
 
 @Controller('/user')
 export class UserController {

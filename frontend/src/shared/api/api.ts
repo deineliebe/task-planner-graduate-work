@@ -1,16 +1,16 @@
-import { TTask } from '../model/types';
-import { TProfileResponse, TTasksResponse, TUsersResponse } from './types';
+import { TTask, TUserInfo } from '../model/types';
+import { TTasksResponse, TUsersResponse } from './types';
 
-const URL = 'http://localhost:3001';
+const URL = 'http://app.smalltaskplanner.ru/api';
 
 const checkResponse = <T>(res: Response): Promise<T> =>
 	res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
 
-export const getTasksApi = () =>
-	fetch(`${URL}/tasks`)
-		.then((res) => checkResponse<TTasksResponse>(res))
+export const getUserTasksInfo = (id: number) =>
+	fetch(`${URL}/tasks/new?id=${id}`)
+		.then((res) => checkResponse<TTask[]>(res))
 		.then((data) => {
-			if (data?.success) return data;
+			if (data) return data;
 			return Promise.reject(data);
 		});
 
@@ -47,16 +47,16 @@ export const getUsersApi = () =>
 			return Promise.reject(data);
 		});
 
-export const getProfileApi = () =>
-	fetch(`${URL}/profile`)
-		.then((res) => checkResponse<TProfileResponse>(res))
+export const getUserInfo = (email: string, password: string) =>
+	fetch(`${URL}/user/getDataByEmail?email=${email}&password=${password}`)
+		.then((res) => checkResponse<TUserInfo>(res))
 		.then((data) => {
-			if (data?.success) return data;
+			if (data) return data;
 			return Promise.reject(data);
 		});
 
 export const api = {
-	getTasksApi,
+	getUserTasksInfo,
 	getUsersApi,
-	getProfileApi
+	getUserInfo
 };

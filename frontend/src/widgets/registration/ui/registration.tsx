@@ -1,4 +1,4 @@
-import authorisationStyles from './registration.module.css';
+import authorizationStyles from './registration.module.css';
 import styles from '../../../shared/ui/styles.module.css';
 import buttonStyles from '../../../shared/ui/button.module.css';
 import { FC, SyntheticEvent } from 'react';
@@ -17,7 +17,7 @@ const Registration: FC = () => {
 			<form
 				id='registration'
 				name='registration'
-				className={authorisationStyles.authorizationForm}
+				className={authorizationStyles.authorizationForm}
 			>
 				<label htmlFor='email'>E-mail</label>
 				<input type='text' id='email' name='email' required></input>

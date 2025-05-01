@@ -4,9 +4,11 @@ export type TTask = {
 	description: string;
 	deadline: Date | null;
 	status: string;
-	last_update: Date;
+	created_at: Date;
 };
 
-export type TUser = {
-	name: string;
+export type TUserInfo = {
+	id: number;
+	email: string;
+	password: string;
 };

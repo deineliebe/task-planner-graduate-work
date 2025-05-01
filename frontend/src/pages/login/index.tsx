@@ -1,15 +1,14 @@
 import { FC, useState } from 'react';
-import { Header } from '@/widgets/header';
 import styles from '../../shared/ui/styles.module.css';
 import buttonStyles from '../../shared/ui/button.module.css';
-import { Login } from '@/widgets/authorisation';
+import { Login } from '@/widgets/authorization';
 import { Registration } from '@/widgets/registration';
 
 type AuthorizationProps = {
-	setAuthorizedValue: (isAuthorized: boolean) => void;
+	setUserId: (id: number | null) => void;
 };
 
-const Authorization: FC<AuthorizationProps> = ({ setAuthorizedValue }) => {
+const Authorization: FC<AuthorizationProps> = ({ setUserId }) => {
 	const [isRegistrationMode, setRegistrationMode] = useState(false);
 	return (
 		<>
@@ -19,20 +18,8 @@ const Authorization: FC<AuthorizationProps> = ({ setAuthorizedValue }) => {
 			>
 				{isRegistrationMode ? 'Вход' : 'Регистрация'}
 			</button>
-			<Header
-				setAuthorizedValue={setAuthorizedValue}
-				isAuthorized={false}
-				setShowAddSettingsModal={function (isShown: boolean): void {
-					console.log(isShown);
-					throw new Error('Function not implemented.');
-				}}
-			/>
 
-			{!isRegistrationMode ? (
-				<Login setAuthorizedValue={setAuthorizedValue} />
-			) : (
-				<Registration />
-			)}
+			{!isRegistrationMode ? <Login setUserId={setUserId} /> : <Registration />}
 		</>
 	);
 };

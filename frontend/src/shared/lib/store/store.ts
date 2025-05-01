@@ -6,9 +6,11 @@ import {
 	useSelector as selectorHook
 } from 'react-redux';
 import { taskSlice } from './slices/tasks';
+import { userSlice } from './slices/users';
 
 export const rootReducer = combineReducers({
-	tasks: taskSlice.reducer
+	tasks: taskSlice.reducer,
+	user: userSlice.reducer
 });
 
 const store = configureStore({

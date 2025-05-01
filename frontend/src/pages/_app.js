@@ -19,7 +19,7 @@ const rubik = Rubik({
 });
 
 export default function MyApp({ Component, pageProps }) {
-	const [isAuthorized, setAuthorizedValue] = React.useState(false);
+	const [userId, setUserId] = React.useState(null);
 	const [showAddSettingsModal, setShowAddSettingsModal] = React.useState(false);
 	return (
 		<div className={`${rubik.variable} ${styles.body} ${layout}`}>
@@ -33,18 +33,18 @@ export default function MyApp({ Component, pageProps }) {
 					<div className={styles.page}>
 						<main className={styles.main}>
 							<Header
-								setAuthorizedValue={setAuthorizedValue}
-								isAuthorized={isAuthorized}
+								setUserId={setUserId}
+								userId={userId}
 								setShowAddSettingsModal={setShowAddSettingsModal}
 							/>
-							{isAuthorized ? (
+							{userId ? (
 								<Component
 									{...pageProps}
-									setAuthorizedValue={setAuthorizedValue}
-									isAuthorized={isAuthorized}
+									setUserId={setUserId}
+									userId={userId}
 								/>
 							) : (
-								<Authorization setAuthorizedValue={setAuthorizedValue} />
+								<Authorization setUserId={setUserId} />
 							)}
 						</main>
 						{showAddSettingsModal && (

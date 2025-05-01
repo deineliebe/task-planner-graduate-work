@@ -1,8 +1,6 @@
 import { FC, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from '@/shared/lib/store/store';
 import {
 	addTask,
-	getLoadingStatus,
 	getTaskData,
 	getTasks
 } from '@/shared/lib/store/slices/tasks';
@@ -12,17 +10,25 @@ import { TasksListNav } from '@/widgets/task-list-nav';
 import { TTask } from '@/shared/model/types';
 import { Modal } from '@/widgets/modal/model';
 import { AddNewForm } from '@/widgets/add-task-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '@/shared/lib/store/store';
+import router from 'next/router';
 
-const Tasks: FC = () => {
-	const dispatch = useDispatch();
+type TasksProps = {
+	userId: number | null;
+};
+
+const Tasks: FC<TasksProps> = ({ userId }) => {
+	const [showAddTaskModal, setShowAddTaskModal] = useState(false);
+	const useAppDispatch = () => useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
 	useEffect(() => {
-		dispatch(getTasks());
-	}, []);
-	const areTasksLoading: boolean = useSelector(getLoadingStatus);
+		console.log(userId);
+		if (userId) dispatch(getTasks({ userId }));
+		else router.push('/');
+	}, [showAddTaskModal]);
 	const tasks: TTask[] = useSelector(getTaskData);
 	const tasksIds: number[] = [];
-	tasks.map((task) => tasksIds.push(task.id));
-	const [showAddTaskModal, setShowAddTaskModal] = useState(false);
 	const deleteTask = (id: number) => {
 		const newTasks: TTask[] = [];
 		tasks.forEach((task) => {
@@ -40,11 +46,9 @@ const Tasks: FC = () => {
 				phrase={'Добавить задачу'}
 			/>
 			<TasksListNav />
-			{!areTasksLoading && (
-				<>
-					<TasksList tasks={tasks} deleteTask={deleteTask} />
-				</>
-			)}
+			<>
+				<TasksList tasks={tasks} deleteTask={deleteTask} />
+			</>
 			{showAddTaskModal && (
 				<Modal
 					title={'Добавить задачу'}

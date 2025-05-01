@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from 'typeorm';
-import { AuthorizationData } from './authorizationdata.entity';
+import { AuthorizationData } from './authorization_data.entity';
 
 @Entity()
 export class Users {
