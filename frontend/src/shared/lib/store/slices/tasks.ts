@@ -47,6 +47,7 @@ export const addTask = createAsyncThunk(
 export const addUserTask = createAsyncThunk(
 	'/usersTasks/add',
 	async (userTask: TUserTask) => {
+		console.log(userTask);
 		return await addNewUserTask(userTask);
 	}
 );
