@@ -2,7 +2,6 @@ import { getTaskData, getTasks } from '@/shared/lib/store/slices/tasks';
 import { TTask } from '@/shared/model/types';
 import formStyles from '../../../shared/ui/form.module.css';
 import buttonStyles from '../../../shared/ui/button.module.css';
-import inputStyles from '../../../shared/ui/input.module.css';
 import styles from '../../../shared/ui/styles.module.css';
 import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
