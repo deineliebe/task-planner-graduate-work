@@ -1,4 +1,10 @@
-import { TNewTask, TTask, TUserInfo, TUserTask } from '../model/types';
+import {
+	TNewTask,
+	TTask,
+	TUpdateTask,
+	TUserInfo,
+	TUserTask
+} from '../model/types';
 import { TTasksResponse } from './types';
 
 const URL = 'http://app.smalltaskplanner.ru/api';
@@ -44,7 +50,7 @@ export const addNewTask = (data: TNewTask) =>
 			return Promise.reject(data);
 		});
 
-export const updateOldTask = (data: TTask) =>
+export const updateOldTask = (data: TUpdateTask) =>
 	fetch(`${URL}/usersTasks/update`, {
 		method: 'PUT',
 		headers: {

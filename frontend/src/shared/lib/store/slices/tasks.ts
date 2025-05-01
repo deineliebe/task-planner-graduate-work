@@ -8,7 +8,7 @@ import {
 	updateOldTask
 } from '@/shared/api/api';
 import { constantsMap } from '@/shared/model/constants';
-import { TNewTask, TTask, TUserTask } from '@/shared/model/types';
+import { TNewTask, TTask, TUpdateTask, TUserTask } from '@/shared/model/types';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export type TTaskState = {
@@ -53,7 +53,7 @@ export const addTask = createAsyncThunk(
 
 export const updateTask = createAsyncThunk(
 	'/tasks/update',
-	async (credentials: { task: TTask }) => {
+	async (credentials: { task: TUpdateTask }) => {
 		console.log(credentials.task);
 		return await updateOldTask(credentials.task);
 	}

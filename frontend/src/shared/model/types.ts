@@ -4,6 +4,15 @@ export type TTask = {
 	description: string;
 	deadline: Date | null;
 	status: string;
+	created_at: Date;
+};
+
+export type TUpdateTask = {
+	id: number;
+	name: string;
+	description: string;
+	deadline: Date | null;
+	status: string;
 	created_at: Date | string;
 };
 
