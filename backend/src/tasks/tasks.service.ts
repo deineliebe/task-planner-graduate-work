@@ -35,7 +35,7 @@ export class TaskService {
     return tasks;
   }
 
-  async getLastTaskByName(name: string): Promise<Tasks> {
+  async getLastTaskByName(name: string): Promise<Tasks[]> {
     const tasks = await this.repository.getLastTask(name);
     if (!tasks) {
       throw new NotFoundException(
