@@ -1,5 +1,5 @@
 import { Entity, Column, OneToOne, JoinColumn, PrimaryColumn } from 'typeorm';
-import { User } from './user.entity';
+import { Users } from './user.entity';
 
 @Entity()
 export class AuthorizationData {
@@ -12,7 +12,7 @@ export class AuthorizationData {
   @Column({ length: 30 })
   password: string;
 
-  @OneToOne(() => User)
+  @OneToOne(() => Users)
   @JoinColumn({ name: 'id' })
-  user: User;
+  user: Users;
 }
