@@ -9,8 +9,8 @@ const Registration: FC = () => {
 			</p>
 			<p>
 				1. Перейди по ссылке{' '}
-				<a href='http://t.me/small_task_planner_bot'>
-					http://t.me/small_task_planner_bot
+				<a href='https://t.me/small_task_planner_bot'>
+				https://t.me/small_task_planner_bot
 				</a>
 			</p>
 			<p>2. Нажми на кнопку &quot;Настройки&quot;</p>
