@@ -13,14 +13,14 @@ export const initialTaskState: TTaskState = {
 	error: null
 };
 
-export const addTask = createAsyncThunk('/tasks/add', addTasksApi);
-
 export const getTasks = createAsyncThunk(
 	'/tasks/get',
 	async (credentials: { userId: number }) => {
 		return await getUserTasksInfo(credentials.userId);
 	}
 );
+
+export const addTask = createAsyncThunk('/tasks/add', addTasksApi);
 
 export const taskSlice = createSlice({
 	name: constantsMap.slices.tasks,
