@@ -53,3 +53,54 @@ fieldset {
 body:not(:-moz-handler-blocked) fieldset {
 	display: table-cell;
 }
+
+input {
+	border: none;
+	outline: none;
+	box-shadow:
+		0 1px 2px rgb(0 0 0 / 6%),
+		0 0 0 1px rgb(134 143 160 / 16%);
+	min-inline-size: 250px;
+	padding: 2px;
+}
+
+input:focus {
+	box-shadow:
+		0 1px 2px rgb(0 0 0 / 6%),
+		0 0 0 1px rgb(134 143 160 / 40%);
+}
+
+input:disabled {
+	background: var(--section-color);
+	box-shadow: 0 0 0 1px rgb(134 143 160 / 24%);
+}
+
+input-search-left {
+	padding-left: 36px;
+	background-image: url('../lib/icons/search.svg');
+	background-repeat: no-repeat;
+	background-position: 12px 50%;
+}
+
+button {
+	gap: 8px;
+	color: var(--button-test-color);
+	background: var(--button-common-color);
+	border: none;
+	border-radius: 4px;
+	box-shadow:
+		0 1px 1px rgb(0 0 0 / 10%),
+		0 0 0 1px rgb(70 79 96 / 16%);
+}
+
+button:focus {
+	outline: none;
+}
+
+button:hover {
+	outline: none;
+}
+
+button:active {
+	outline: none;
+}

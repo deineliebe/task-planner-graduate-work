@@ -61,7 +61,7 @@ const Settings: FC<SettingsProps> = ({ setShowModal }) => {
 							className={`${formStyles['form-label']}`}
 							htmlFor='settings_tg'
 						>
-							Telegram
+							Новый пароль
 						</label>
 						<input
 							type='text'
@@ -76,7 +76,7 @@ const Settings: FC<SettingsProps> = ({ setShowModal }) => {
 							className={`${formStyles['form-label']}`}
 							htmlFor='settings_password'
 						>
-							Пароль
+							Старый пароль
 						</label>
 						<input
 							type='text'

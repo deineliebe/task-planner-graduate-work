@@ -4,6 +4,7 @@
 	box-shadow:
 		0 1px 2px rgb(0 0 0 / 6%),
 		0 0 0 1px rgb(134 143 160 / 16%);
+	min-inline-size: 300px;
 }
 
 .input:focus {
