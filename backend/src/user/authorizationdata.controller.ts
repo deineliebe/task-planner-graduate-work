@@ -6,7 +6,7 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get('/getDataByEmail')
-  async findUserInfoByEmail(@Query() email: string, password: string) {
+  async findUserInfoByEmail(@Query('email') email: string, @Query('password') password: string) {
     return await this.userService.getUser(email, password);
   }
 

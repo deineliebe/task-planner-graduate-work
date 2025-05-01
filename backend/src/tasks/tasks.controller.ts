@@ -1,7 +1,6 @@
 import { Controller, Post, Body, Get, Query, Put } from '@nestjs/common';
 import { TaskService } from './tasks.service';
 import { TaskDTO } from './dto/tasks.dto';
-import { Status } from './entities/status.entity';
 
 @Controller('/tasks')
 export class TaskController {
@@ -13,12 +12,12 @@ export class TaskController {
   }
 
   @Get('/hot')
-  async findHotTasks(@Query() id: number) {
+  async findHotTasks(@Query('id') id: number) {
     return await this.taskService.getHotTasks(id);
   }
 
   @Get('/status')
-  async findTasksByStatus(@Query() id: number, status: string) {
+  async findTasksByStatus(@Query('id') id: number, @Query('status') status: string) {
     return await this.taskService.getTasksByStatus(id, status);
   }
 

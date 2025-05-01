@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Tasks } from '../tasks/entities/task.entity';
 import { TaskDTO } from '../tasks/dto/tasks.dto';
-import { Status } from '../tasks/entities/status.entity';
 
 @Injectable()
 export class tasksRepository {
@@ -12,7 +11,7 @@ export class tasksRepository {
 
   async getNewTasks(userId: number): Promise<Tasks[]> {
     return this.repository.query(`SELECT user_id AS id, name, description, deadline, created_at, status
-      FROM user_tasks FULL JOIN tasks
+      FROM user_tasks INNER JOIN tasks
       ON user_tasks.task_id = tasks.id
       WHERE user_id = $1
       ORDER BY created_at DESC;`, [userId]);
@@ -20,18 +19,18 @@ export class tasksRepository {
 
   async getHotTasks(userId: number): Promise<Tasks[]> {
     return this.repository.query(`SELECT user_id, id, name, description, deadline, created_at, status
-      FROM user_tasks LEFT JOIN tasks
+      FROM user_tasks INNER JOIN tasks
       ON user_tasks.task_id = tasks.id
-      WHERE user_id = ${userId} AND deadline >= CURRENT_DATE
-      ORDER BY deadline ASC;`);
+      WHERE user_id = $1 AND deadline >= CURRENT_DATE
+      ORDER BY deadline ASC;`, [userId]);
   }
 
   async getTasksByStatus(userId: number, status: string): Promise<Tasks[]> {
     return this.repository.query(`SELECT user_id, id, name, description, deadline, created_at, status
-      FROM user_tasks LEFT JOIN tasks
+      FROM user_tasks INNER JOIN tasks
       ON user_tasks.task_id = tasks.id
-      WHERE user_id = ${userId} AND status = ${status}
-      ORDER BY created_at DESC;`);
+      WHERE user_id = $1 AND status = $2
+      ORDER BY created_at DESC;`, [userId, status]);
   }
 
   async addTask(task: TaskDTO) {
