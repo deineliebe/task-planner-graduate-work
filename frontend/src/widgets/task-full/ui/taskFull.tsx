@@ -10,13 +10,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import taskFullStyles from './taskFull.module.css';
 import { AppDispatch } from '@/shared/lib/store/store';
+import { TasksProps } from '@/pages/tasks';
 
-const TaskFull: FC = () => {
+const TaskFull: FC<TasksProps> = ({ userId }) => {
 	const router = useRouter();
 	const { id } = router.query;
 	const useAppDispatch = () => useDispatch<AppDispatch>();
 	const dispatch = useAppDispatch();
-	dispatch(getTasks());
+	if (userId) dispatch(getTasks({ userId }));
 	const tasks: TTask[] = useSelector(getTaskData);
 	const task = tasks.findLast(function (elem) {
 		return elem.id == Number(id);

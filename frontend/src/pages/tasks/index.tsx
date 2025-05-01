@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '@/shared/lib/store/store';
 import router from 'next/router';
 
-type TasksProps = {
+export type TasksProps = {
 	userId: number | null;
 };
 
