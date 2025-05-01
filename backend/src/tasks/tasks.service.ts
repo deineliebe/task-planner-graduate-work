@@ -29,7 +29,17 @@ export class TaskService {
     const tasks = await this.repository.getTaskById(id);
     if (!tasks) {
       throw new NotFoundException(
-        `Task with required id (${id}) doesn't exist in database`,
+        `Задача с id ${id}) не существует`,
+      );
+    }
+    return tasks;
+  }
+
+  async getLastTaskByName(name: string): Promise<Tasks> {
+    const tasks = await this.repository.getLastTask(name);
+    if (!tasks) {
+      throw new NotFoundException(
+        `Задача с именем ${name} не существует`,
       );
     }
     return tasks;

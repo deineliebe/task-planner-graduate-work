@@ -10,7 +10,7 @@ export class tasksRepository {
     @InjectRepository(Tasks) private repository: Repository<Tasks>) {}
 
   async getNewTasks(userId: number): Promise<Tasks[]> {
-    return this.repository.query(`SELECT user_id AS id, name, description, deadline, created_at, status
+    return this.repository.query(`SELECT task_id AS id, name, description, deadline, created_at, status
       FROM user_tasks INNER JOIN tasks
       ON user_tasks.task_id = tasks.id
       WHERE user_id = $1
@@ -18,7 +18,7 @@ export class tasksRepository {
   }
 
   async getHotTasks(userId: number): Promise<Tasks[]> {
-    return this.repository.query(`SELECT user_id, id, name, description, deadline, created_at, status
+    return this.repository.query(`SELECT task_id AS id, name, description, deadline, created_at, status
       FROM user_tasks INNER JOIN tasks
       ON user_tasks.task_id = tasks.id
       WHERE user_id = $1 AND deadline >= CURRENT_DATE
@@ -26,7 +26,7 @@ export class tasksRepository {
   }
 
   async getTasksByStatus(userId: number, status: string): Promise<Tasks[]> {
-    return this.repository.query(`SELECT user_id, id, name, description, deadline, created_at, status
+    return this.repository.query(`SELECT task_id AS id, name, description, deadline, created_at, status
       FROM user_tasks INNER JOIN tasks
       ON user_tasks.task_id = tasks.id
       WHERE user_id = $1 AND status = $2
@@ -41,6 +41,15 @@ export class tasksRepository {
   async getTaskById(id: number): Promise<Tasks> {
     return this.repository.findOne({
       where: { id: id }
+    });
+  }
+
+  async getLastTask(name: string): Promise<Tasks[]> {
+    return this.repository.find({
+      where: { name : name },
+      order: {'created_at': 'DESC'},
+      skip: 0,
+      take: 1,
     });
   }
 

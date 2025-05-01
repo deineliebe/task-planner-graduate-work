@@ -9,6 +9,7 @@ import { TNewTask } from '@/shared/model/types';
 import DatePicker from 'react-datepicker';
 
 import 'react-datepicker/dist/react-datepicker.css';
+import moment from 'moment';
 
 type AddNewFormProps = {
 	setShowModal: (showModal: boolean) => void;
@@ -42,7 +43,7 @@ const AddNewFormUI: FC<AddNewFormProps> = ({ setShowModal }) => {
 			description: (
 				document.getElementById('task_description') as HTMLInputElement
 			)?.value,
-			deadline: startDate,
+			deadline: startDate ? moment(startDate).add(3, 'h').toISOString() : null,
 			status: (
 				document.body.querySelector(
 					`.${formStyles['form-button-in-bar-active']}`

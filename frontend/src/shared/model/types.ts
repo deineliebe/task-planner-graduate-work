@@ -11,7 +11,7 @@ export type TNewTask = {
 	name: string;
 	description: string;
 	status: string;
-	deadline: Date | null;
+	deadline: string | null;
 	created_at: Date;
 };
 
