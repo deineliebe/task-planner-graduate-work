@@ -60,8 +60,9 @@ const AddNewFormUI: FC<AddNewFormProps> = ({ setShowModal, userId }) => {
 			created_at: new Date()
 		};
 		await dispatch(addTask({ newTask })).unwrap();
-		const lastTask: TTask[] = await dispatch(getLastTask({ name })).unwrap();
-		dispatch(addUserTask({ task_id: lastTask[0].id, user_id: userId || 0 }));
+		const lastTask: number = (await dispatch(getLastTask({ name })).unwrap())[0]
+			.id;
+		dispatch(addUserTask({ task_id: lastTask, user_id: userId || 0 }));
 		setShowModal(false);
 	};
 	return (
