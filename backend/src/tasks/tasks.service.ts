@@ -25,21 +25,21 @@ export class TaskService {
     return tasks;
   }
 
-  async getTaskById(id: number): Promise<Tasks> {
-    const tasks = await this.repository.getTaskById(id);
-    if (!tasks) {
-      throw new NotFoundException(
-        `Задача с id ${id}) не существует`,
-      );
-    }
-    return tasks;
-  }
-
   async getLastTaskByName(name: string): Promise<Tasks[]> {
     const tasks = await this.repository.getLastTask(name);
     if (!tasks) {
       throw new NotFoundException(
         `Задача с именем ${name} не существует`,
+      );
+    }
+    return tasks;
+  }
+
+  async getTaskById(id: number): Promise<Tasks> {
+    const tasks = await this.repository.getTaskById(id);
+    if (!tasks) {
+      throw new NotFoundException(
+        `Задача с id ${id}) не существует`,
       );
     }
     return tasks;

@@ -14,6 +14,14 @@ export const getUserTasksInfo = (id: number) =>
 			return Promise.reject(data);
 		});
 
+export const getUserTaskByIdInfo = (id: number) =>
+	fetch(`${URL}/tasks/new?id=${id}`)
+		.then((res) => checkResponse<TTask[]>(res))
+		.then((data) => {
+			if (data) return data;
+			return Promise.reject(data);
+		});
+
 export const getLastTaskInfo = (name: string) =>
 	fetch(`${URL}/tasks/last?name=${name}`)
 		.then((res) => checkResponse<TTask[]>(res))
@@ -25,6 +33,20 @@ export const getLastTaskInfo = (name: string) =>
 export const addNewTask = (data: TNewTask) =>
 	fetch(`${URL}/tasks/add`, {
 		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8'
+		} as HeadersInit,
+		body: JSON.stringify(data)
+	})
+		.then((res) => checkResponse<TTasksResponse>(res))
+		.then((data) => {
+			if (data) return data;
+			return Promise.reject(data);
+		});
+
+export const updateOldTask = (data: TTask) =>
+	fetch(`${URL}/usersTasks/update`, {
+		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8'
 		} as HeadersInit,
@@ -61,6 +83,8 @@ export const getUserInfo = (email: string, password: string) =>
 export const api = {
 	getUserTasksInfo,
 	getLastTaskInfo,
+	getUserTaskByIdInfo,
+	updateOldTask,
 	addNewTask,
 	getUserInfo
 };

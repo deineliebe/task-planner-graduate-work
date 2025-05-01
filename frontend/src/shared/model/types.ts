@@ -4,7 +4,7 @@ export type TTask = {
 	description: string;
 	deadline: Date | null;
 	status: string;
-	created_at: Date;
+	created_at: Date | string;
 };
 
 export type TNewTask = {

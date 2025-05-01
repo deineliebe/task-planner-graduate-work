@@ -4,7 +4,8 @@ import {
 	addNewTask,
 	getUserTasksInfo,
 	getLastTaskInfo,
-	addNewUserTask
+	addNewUserTask,
+	updateOldTask
 } from '@/shared/api/api';
 import { constantsMap } from '@/shared/model/constants';
 import { TNewTask, TTask, TUserTask } from '@/shared/model/types';
@@ -29,6 +30,13 @@ export const getTasks = createAsyncThunk(
 	}
 );
 
+export const getTaskById = createAsyncThunk(
+	'/tasks/get',
+	async (credentials: { userId: number }) => {
+		return await getUserTasksInfo(credentials.userId);
+	}
+);
+
 export const getLastTask = createAsyncThunk(
 	'/tasks/getLast',
 	async (credentials: { name: string }) => {
@@ -39,8 +47,15 @@ export const getLastTask = createAsyncThunk(
 export const addTask = createAsyncThunk(
 	'/tasks/add',
 	async (credentials: { newTask: TNewTask }) => {
-		console.log(credentials.newTask);
 		return await addNewTask(credentials.newTask);
+	}
+);
+
+export const updateTask = createAsyncThunk(
+	'/tasks/update',
+	async (credentials: { task: TTask }) => {
+		console.log(credentials.task);
+		return await updateOldTask(credentials.task);
 	}
 );
 
@@ -87,10 +102,18 @@ export const taskSlice = createSlice({
 				state.error = null;
 			})
 			.addCase(addTask.rejected, (state, action) => {
-				console.log(state);
 				state.error = action.error.message;
 			})
 			.addCase(addTask.fulfilled, (state) => {
+				state.error = null;
+			})
+			.addCase(updateTask.pending, (state) => {
+				state.error = null;
+			})
+			.addCase(updateTask.rejected, (state, action) => {
+				state.error = action.error.message;
+			})
+			.addCase(updateTask.fulfilled, (state) => {
 				state.error = null;
 			})
 			.addCase(addUserTask.pending, (state) => {

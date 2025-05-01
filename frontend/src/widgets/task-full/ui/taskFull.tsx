@@ -1,6 +1,10 @@
 /* eslint-disable eslint-comments/disable-enable-pair */
 /* eslint-disable import/no-unresolved */
-import { getTaskData, getTasks } from '@/shared/lib/store/slices/tasks';
+import {
+	getTaskData,
+	getTasks,
+	updateTask
+} from '@/shared/lib/store/slices/tasks';
 import { TTask } from '@/shared/model/types';
 import formStyles from '../../../shared/ui/form.module.css';
 import buttonStyles from '../../../shared/ui/button.module.css';
@@ -12,6 +16,7 @@ import DatePicker from 'react-datepicker';
 import taskFullStyles from './taskFull.module.css';
 import { AppDispatch } from '@/shared/lib/store/store';
 import { TasksProps } from '@/pages/tasks';
+import moment from 'moment';
 
 const TaskFull: FC<TasksProps> = ({ userId }) => {
 	const router = useRouter();
@@ -45,8 +50,8 @@ const TaskFull: FC<TasksProps> = ({ userId }) => {
 		(evt?.target as HTMLElement)?.classList?.remove(`${styles.isClicked}`);
 	};
 	const handleSubmit = () => {
-		const newTask = {
-			id: task?.id,
+		const oldTask = {
+			id: task ? task.id : 0,
 			name: (document.getElementById('task_name') as HTMLInputElement)?.value,
 			description: (
 				document.getElementById('task_description') as HTMLInputElement
@@ -57,9 +62,10 @@ const TaskFull: FC<TasksProps> = ({ userId }) => {
 					`.${formStyles['form-button-in-bar-active']}`
 				) as HTMLButtonElement
 			)?.innerText,
-			created_at: task?.created_at
+			created_at: task?.created_at || moment().toISOString()
 		};
-		console.log(newTask);
+		console.log(oldTask);
+		dispatch(updateTask({ task: oldTask }));
 	};
 	console.log(tasks);
 	return (

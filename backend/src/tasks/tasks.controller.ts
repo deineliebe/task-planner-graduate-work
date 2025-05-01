@@ -26,6 +26,11 @@ export class TaskController {
     return await this.taskService.getLastTaskByName(name);
   }
 
+  @Get('/one')
+  async findTaskById(@Query('id') id: number) {
+    return await this.taskService.getTaskById(id);
+  }
+
   @Post('/add')
   async create(@Body() task: TaskDTO) {
     return await this.taskService.addTask(task);
