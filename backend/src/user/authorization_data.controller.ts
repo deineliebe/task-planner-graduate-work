@@ -1,5 +1,6 @@
 import { Controller, Body, Get, Put, Query } from '@nestjs/common';
 import { UserService } from './authorization_data.service';
+import { TUserPasswordData } from './dto/dto';
 
 @Controller('/user')
 export class UserController {
@@ -11,7 +12,7 @@ export class UserController {
   }
 
   @Put('/newPassword')
-  async updatePassword(@Body() id: number, oldPassword: string, newPassword: string) {
-    return await this.userService.updatePasswordById(id, oldPassword, newPassword);
+  async updatePassword(@Body() usedData: TUserPasswordData) {
+    return await this.userService.updatePasswordById(usedData);
   }
 }

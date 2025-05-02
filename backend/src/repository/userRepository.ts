@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { AuthorizationData } from '../user/entities/authorization_data.entity';
+import { TUserPasswordData } from '../user/dto/dto';
 
 @Injectable()
 export class userRepository {
@@ -15,7 +16,7 @@ export class userRepository {
     });
   }
 
-  async updatePasswordById(id: number, oldPassword: string, newPassword: string) {
-    await this.repository.query(`UPDATE authorization_data SET password = $1 WHERE id = $2 AND password = $3`, [newPassword, id, oldPassword]);
+  async updatePasswordById(usedData: TUserPasswordData) {
+    await this.repository.query(`UPDATE authorization_data SET password = $1 WHERE id::integer = $2 AND password = $3`, [usedData.newPassword, usedData.id, usedData.oldPassword]);
   }
 }

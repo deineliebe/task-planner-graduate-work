@@ -4,6 +4,7 @@ import {
 } from '@nestjs/common';
 import { userRepository } from '../repository/userRepository';
 import { AuthorizationData } from './entities/authorization_data.entity';
+import { TUserPasswordData } from './dto/dto';
 
 @Injectable()
 export class UserService {
@@ -15,7 +16,7 @@ export class UserService {
     return userInfo;
   }
 
-  async updatePasswordById(id: number, oldPassword: string, newPassword: string) {
-    return await this.repository.updatePasswordById(id, oldPassword, newPassword);
+  async updatePasswordById(usedData: TUserPasswordData) {
+    return await this.repository.updatePasswordById(usedData);
   }
 }

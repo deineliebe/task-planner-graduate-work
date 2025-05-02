@@ -3,6 +3,7 @@ import {
 	TTask,
 	TUpdateTask,
 	TUserInfo,
+	TUserPasswordData,
 	TUserTask
 } from '../model/types';
 import { TTasksResponse } from './types';
@@ -83,14 +84,6 @@ export const addNewUserTask = (data: TUserTask) =>
 			return Promise.reject(data);
 		});
 
-export const getUserInfo = (email: string, password: string) =>
-	fetch(`${URL}/user/getDataByEmail?email=${email}&password=${password}`)
-		.then((res) => checkResponse<TUserInfo>(res))
-		.then((data) => {
-			if (data) return data;
-			return Promise.reject(data);
-		});
-
 export const deleteUserOldTask = (id: number) =>
 	fetch(`${URL}/userTasks/delete?id=${id}`, {
 		method: 'DELETE',
@@ -105,6 +98,28 @@ export const deleteUserOldTask = (id: number) =>
 			return Promise.reject(data);
 		});
 
+export const getUserInfo = (email: string, password: string) =>
+	fetch(`${URL}/user/getDataByEmail?email=${email}&password=${password}`)
+		.then((res) => checkResponse<TUserInfo>(res))
+		.then((data) => {
+			if (data) return data;
+			return Promise.reject(data);
+		});
+
+export const updateUsersPasswordById = (data: TUserPasswordData) =>
+	fetch(`${URL}/user/getDataByEmail`, {
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8'
+		} as HeadersInit,
+		body: JSON.stringify(data)
+	})
+		.then((res) => checkResponse<TTasksResponse>(res))
+		.then((data) => {
+			if (data) return data;
+			return Promise.reject(data);
+		});
+
 export const api = {
 	getUserTasksInfo,
 	getLastTaskInfo,
@@ -112,6 +127,7 @@ export const api = {
 	updateOldTask,
 	deleteOldTask,
 	addNewTask,
+	deleteUserOldTask,
 	getUserInfo,
-	deleteUserOldTask
+	updateUsersPasswordById
 };

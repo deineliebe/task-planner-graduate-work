@@ -1,27 +1,35 @@
-import { FC, SyntheticEvent } from 'react';
+/* eslint-disable eslint-comments/disable-enable-pair */
+/* eslint-disable import/no-unresolved */
+import { FC, SyntheticEvent, useRef } from 'react';
 import addTaskStyles from './settings.module.css';
 import formStyles from '../../../shared/ui/form.module.css';
 import buttonStyles from '../../../shared/ui/button.module.css';
 import styles from '../../../shared/ui/styles.module.css';
 
 import 'react-datepicker/dist/react-datepicker.css';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/shared/lib/store/store';
+import { updateUsersPassword } from '@/shared/lib/store/slices/users';
 
 type SettingsProps = {
 	setShowModal: (showModal: boolean) => void;
+	userId: number;
 };
 
-const Settings: FC<SettingsProps> = ({ setShowModal }) => {
+const Settings: FC<SettingsProps> = ({ setShowModal, userId }) => {
+	const useAppDispatch = () => useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
+	const oldPasswordRef = useRef<HTMLInputElement>(null);
+	const newPasswordRef = useRef<HTMLInputElement>(null);
 	const handleSubmit = (e: SyntheticEvent) => {
 		e.preventDefault();
 		const userData = {
-			email: (document.getElementById('settings_email') as HTMLInputElement)
-				?.value,
-			tg: (document.getElementById('settings_tg') as HTMLInputElement)?.value,
-			password: (
-				document.getElementById('settings_password') as HTMLInputElement
-			)?.value
+			id: userId,
+			oldPassword: oldPasswordRef.current?.value || '',
+			newPassword: newPasswordRef.current?.value || ''
 		};
 		console.log(userData);
+		dispatch(updateUsersPassword(userData));
 		setShowModal(false);
 	};
 	return (
@@ -49,8 +57,9 @@ const Settings: FC<SettingsProps> = ({ setShowModal }) => {
 						</label>
 						<input
 							type='text'
-							id='settings_tg'
-							name='settings_tg'
+							id='settings_new_password'
+							name='settings_new_password'
+							ref={newPasswordRef}
 							className={`${addTaskStyles['add-task-input']}`}
 							required
 						/>
@@ -64,9 +73,10 @@ const Settings: FC<SettingsProps> = ({ setShowModal }) => {
 						</label>
 						<input
 							type='text'
-							id='settings_password'
-							name='settings_password'
+							id='settings_old_password'
+							name='settings_old_password'
 							className={`${addTaskStyles['add-task-input']}`}
+							ref={oldPasswordRef}
 							required
 						/>
 					</fieldset>

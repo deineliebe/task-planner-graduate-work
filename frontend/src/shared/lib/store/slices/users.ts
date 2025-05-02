@@ -1,12 +1,21 @@
-import { getUserInfo } from '@/shared/api/api';
+/* eslint-disable eslint-comments/disable-enable-pair */
+/* eslint-disable import/no-unresolved */
+import { getUserInfo, updateUsersPasswordById } from '@/shared/api/api';
 import { constantsMap } from '@/shared/model/constants';
-import { TUserInfo } from '@/shared/model/types';
+import { TUserInfo, TUserPasswordData } from '@/shared/model/types';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const getUser = createAsyncThunk(
 	'/user/get',
 	async (credentials: { email: string; password: string }) => {
 		return await getUserInfo(credentials.email, credentials.password);
+	}
+);
+
+export const updateUsersPassword = createAsyncThunk(
+	'/user/updatePassword',
+	async (data: TUserPasswordData) => {
+		return await updateUsersPasswordById(data);
 	}
 );
 
@@ -38,6 +47,15 @@ export const userSlice = createSlice({
 			})
 			.addCase(getUser.fulfilled, (state, action) => {
 				state.data = action.payload;
+				state.error = null;
+			})
+			.addCase(updateUsersPassword.pending, (state) => {
+				state.error = null;
+			})
+			.addCase(updateUsersPassword.rejected, (state, action) => {
+				state.error = action.error.message;
+			})
+			.addCase(updateUsersPassword.fulfilled, (state) => {
 				state.error = null;
 			});
 	}

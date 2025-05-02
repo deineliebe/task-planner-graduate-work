@@ -34,3 +34,9 @@ export type TUserTask = {
 	task_id: number;
 	user_id: number;
 };
+
+export type TUserPasswordData = {
+	id: number;
+	oldPassword: string;
+	newPassword: string;
+};

@@ -71,7 +71,10 @@ export default function MyApp({ Component, pageProps }) {
 								title={'Настройки'}
 								onClose={() => setShowAddSettingsModal(false)}
 							>
-								<Settings setShowModal={setShowAddSettingsModal} />
+								<Settings
+									setShowModal={setShowAddSettingsModal}
+									userId={userId}
+								/>
 							</Modal>
 						)}
 						<Footer />
