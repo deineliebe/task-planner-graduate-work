@@ -27,6 +27,11 @@ CREATE TABLE tasks (
 CREATE TABLE userTasks (
 	user_id INT NOT NULL,
 	task_id INT NOT NULL,
-	FOREIGN KEY (user_id) REFERENCES users (id),
-	FOREIGN KEY (task_id) REFERENCES tasks (id)
+	FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+	FOREIGN KEY (task_id) REFERENCES tasks (id) ON DELETE CASCADE
 );
+
+ALTER TABLE user_tasks
+DROP CONSTRAINT task_id,
+ADD CONSTRAINT task_id
+FOREIGN KEY (task_id) REFERENCES tasks(id) ON DELETE CASCADE;

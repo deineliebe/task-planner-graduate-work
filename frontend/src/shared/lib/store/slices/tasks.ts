@@ -64,7 +64,7 @@ export const updateTask = createAsyncThunk(
 );
 
 export const removeTask = createAsyncThunk(
-	'/tasks/delete',
+	'/tasks/remove',
 	async (credentials: { id: number }) => {
 		return await deleteOldTask(credentials.id);
 	}

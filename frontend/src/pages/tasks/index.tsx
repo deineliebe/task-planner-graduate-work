@@ -32,7 +32,6 @@ const Tasks: FC<TasksProps> = ({ userId }) => {
 	const tasks: TTask[] = useSelector(getTaskData);
 	const tasksIds: number[] = [];
 	const deleteTask = (id: number) => {
-		dispatch(removeUserTask({ id }));
 		dispatch(removeTask({ id }));
 	};
 	tasks.map((task) => tasksIds.push(task.id));
