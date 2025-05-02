@@ -2,6 +2,7 @@
 /* eslint-disable import/no-unresolved */
 import { FC, useEffect, useState } from 'react';
 import {
+	addUserTask,
 	getTaskData,
 	getTasks,
 	removeTask,
@@ -28,7 +29,7 @@ const Tasks: FC<TasksProps> = ({ userId }) => {
 	useEffect(() => {
 		if (userId) dispatch(getTasks({ userId }));
 		else router.push('/');
-	}, [showAddTaskModal]);
+	});
 	const tasks: TTask[] = useSelector(getTaskData);
 	const tasksIds: number[] = [];
 	const deleteTask = (id: number) => {
@@ -49,7 +50,9 @@ const Tasks: FC<TasksProps> = ({ userId }) => {
 			{showAddTaskModal && (
 				<Modal
 					title={'Добавить задачу'}
-					onClose={() => setShowAddTaskModal(false)}
+					onClose={() => {
+						setShowAddTaskModal(false);
+					}}
 				>
 					<AddNewForm setShowModal={setShowAddTaskModal} userId={userId} />
 				</Modal>
