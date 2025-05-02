@@ -1,7 +1,11 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable import/no-unresolved */
 import { FC, useEffect, useState } from 'react';
-import { getTaskData, getTasks } from '@/shared/lib/store/slices/tasks';
+import {
+	getTaskData,
+	getTasks,
+	removeTask
+} from '@/shared/lib/store/slices/tasks';
 import { TasksList } from '@/widgets/task-list';
 import { TaskSubHeader } from '@/widgets/task-subheader';
 import { TasksListNav } from '@/widgets/task-list-nav';
@@ -27,10 +31,7 @@ const Tasks: FC<TasksProps> = ({ userId }) => {
 	const tasks: TTask[] = useSelector(getTaskData);
 	const tasksIds: number[] = [];
 	const deleteTask = (id: number) => {
-		const newTasks: TTask[] = [];
-		tasks.forEach((task) => {
-			if (task.id !== id) newTasks.push(task);
-		});
+		dispatch(removeTask({ id }));
 	};
 	tasks.map((task) => tasksIds.push(task.id));
 

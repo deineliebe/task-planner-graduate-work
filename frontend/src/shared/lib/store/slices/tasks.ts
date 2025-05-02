@@ -6,7 +6,8 @@ import {
 	getLastTaskInfo,
 	addNewUserTask,
 	updateOldTask,
-	getUserTaskByIdInfo
+	getUserTaskByIdInfo,
+	deleteOldTask
 } from '@/shared/api/api';
 import { constantsMap } from '@/shared/model/constants';
 import { TNewTask, TTask, TUpdateTask, TUserTask } from '@/shared/model/types';
@@ -15,14 +16,14 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 export type TTaskState = {
 	tasks: TTask[];
 	lastTask: TTask[];
-	currentTask: TTask[];
+	currentTask: TTask | null;
 	error: string | null | undefined;
 };
 
 export const initialTaskState: TTaskState = {
 	tasks: [],
 	lastTask: [],
-	currentTask: [],
+	currentTask: null,
 	error: null
 };
 
@@ -57,15 +58,20 @@ export const addTask = createAsyncThunk(
 export const updateTask = createAsyncThunk(
 	'/tasks/update',
 	async (credentials: { task: TUpdateTask }) => {
-		console.log(credentials.task);
 		return await updateOldTask(credentials.task);
+	}
+);
+
+export const removeTask = createAsyncThunk(
+	'/tasks/delete',
+	async (credentials: { id: number }) => {
+		return await deleteOldTask(credentials.id);
 	}
 );
 
 export const addUserTask = createAsyncThunk(
 	'/usersTasks/add',
 	async (userTask: TUserTask) => {
-		console.log(userTask);
 		return await addNewUserTask(userTask);
 	}
 );
@@ -103,7 +109,7 @@ export const taskSlice = createSlice({
 				state.error = null;
 			})
 			.addCase(getTaskById.pending, (state) => {
-				state.currentTask = [];
+				state.currentTask = null;
 				state.error = null;
 			})
 			.addCase(getTaskById.rejected, (state, action) => {
@@ -129,6 +135,15 @@ export const taskSlice = createSlice({
 				state.error = action.error.message;
 			})
 			.addCase(updateTask.fulfilled, (state) => {
+				state.error = null;
+			})
+			.addCase(removeTask.pending, (state) => {
+				state.error = null;
+			})
+			.addCase(removeTask.rejected, (state, action) => {
+				state.error = action.error.message;
+			})
+			.addCase(removeTask.fulfilled, (state) => {
 				state.error = null;
 			})
 			.addCase(addUserTask.pending, (state) => {

@@ -42,7 +42,7 @@ export class TaskController {
   }
 
   @Delete('/remove')
-  async deleteTask(@Body() id: number) {
+  async deleteTask(@Query('id') id: number) {
     return await this.taskService.deleteTask(id);
   }
 }

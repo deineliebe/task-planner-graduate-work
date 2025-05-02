@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { TasksListUI } from '../ui';
+// eslint-disable-next-line import/no-unresolved
 import { TTask } from '@/shared/model/types';
 
 export type ListTaskProps = {

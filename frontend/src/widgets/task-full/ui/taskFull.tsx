@@ -9,7 +9,7 @@ import formStyles from '../../../shared/ui/form.module.css';
 import buttonStyles from '../../../shared/ui/button.module.css';
 import styles from '../../../shared/ui/styles.module.css';
 import { useRouter } from 'next/router';
-import { FC, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import taskFullStyles from './taskFull.module.css';
@@ -17,15 +17,27 @@ import moment from 'moment';
 import { AppDispatch } from '@/shared/lib/store/store';
 
 const TaskFull: FC = () => {
+	const router = useRouter();
+	const id = router.query.id;
 	const useAppDispatch = () => useDispatch<AppDispatch>();
 	const dispatch = useAppDispatch();
-	const router = useRouter();
-	const { id } = router.query;
-	dispatch(getTaskById({ id: Number(id) }));
-	const task = useSelector(getCurrentTaskData)[0];
+	const task = useSelector(getCurrentTaskData);
+	useEffect(() => {
+		dispatch(getTaskById({ id: Number(id) }));
+	}, [id, dispatch]);
+	const nameRef = useRef<HTMLInputElement>(null);
+	const descriptionRef = useRef<HTMLTextAreaElement>(null);
+	const datePickerRef = useRef<DatePicker>(null);
 	const [startDate, setStartDate] = useState<Date | null>(
 		task?.deadline || null
 	);
+	useEffect(() => {
+		if (task && nameRef.current && descriptionRef.current) {
+			nameRef.current.value = task.name;
+			descriptionRef.current.value = task.description || '';
+			setStartDate(task.deadline);
+		}
+	}, [task]);
 	const onStatusClick = (evt: React.MouseEvent) => {
 		document.body
 			.querySelector(`.${formStyles['form-button-in-bar-active']}`)
@@ -47,10 +59,8 @@ const TaskFull: FC = () => {
 	const handleSubmit = () => {
 		const oldTask = {
 			id: task ? task.id : 0,
-			name: (document.getElementById('task_name') as HTMLInputElement)?.value,
-			description: (
-				document.getElementById('task_description') as HTMLInputElement
-			)?.value,
+			name: nameRef?.current?.value || '',
+			description: descriptionRef?.current?.value || '',
 			deadline: startDate,
 			status: (
 				document.body.querySelector(
@@ -59,7 +69,6 @@ const TaskFull: FC = () => {
 			)?.innerText,
 			created_at: task?.created_at || moment().toISOString()
 		};
-		console.log(oldTask);
 		dispatch(updateTask({ task: oldTask }));
 	};
 	return (
@@ -96,6 +105,7 @@ const TaskFull: FC = () => {
 						name='task_name'
 						className={`${taskFullStyles['task-text']}`}
 						defaultValue={task?.name}
+						ref={nameRef}
 						required
 					/>
 				</fieldset>
@@ -111,6 +121,7 @@ const TaskFull: FC = () => {
 						name='task_description'
 						className={`${taskFullStyles['task-text']}`}
 						defaultValue={task?.description}
+						ref={descriptionRef}
 					/>
 				</fieldset>
 				<fieldset
@@ -126,6 +137,7 @@ const TaskFull: FC = () => {
 						selected={startDate}
 						className={`${taskFullStyles['task-text']}`}
 						onChange={(date) => setStartDate(date)}
+						ref={datePickerRef}
 					/>
 				</fieldset>
 				<fieldset className={`${formStyles['form-field']}`}>

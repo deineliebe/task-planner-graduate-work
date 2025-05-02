@@ -38,7 +38,7 @@ const Login: FC<AuthorizationProps> = ({ setUserId }) => {
 		if (userInfo?.id) {
 			setUserId(userInfo.id);
 		}
-	}, [userInfo]);
+	}, [setUserId, userInfo]);
 	return (
 		<>
 			<form
