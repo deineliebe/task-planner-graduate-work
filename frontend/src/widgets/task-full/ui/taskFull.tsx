@@ -1,11 +1,10 @@
 /* eslint-disable eslint-comments/disable-enable-pair */
 /* eslint-disable import/no-unresolved */
 import {
-	getTaskData,
-	getTasks,
+	getCurrentTaskData,
+	getTaskById,
 	updateTask
 } from '@/shared/lib/store/slices/tasks';
-import { TTask } from '@/shared/model/types';
 import formStyles from '../../../shared/ui/form.module.css';
 import buttonStyles from '../../../shared/ui/button.module.css';
 import styles from '../../../shared/ui/styles.module.css';
@@ -14,20 +13,16 @@ import { FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import taskFullStyles from './taskFull.module.css';
-import { AppDispatch } from '@/shared/lib/store/store';
-import { TasksProps } from '@/pages/tasks';
 import moment from 'moment';
+import { AppDispatch } from '@/shared/lib/store/store';
 
-const TaskFull: FC<TasksProps> = ({ userId }) => {
-	const router = useRouter();
-	const { id } = router.query;
+const TaskFull: FC = () => {
 	const useAppDispatch = () => useDispatch<AppDispatch>();
 	const dispatch = useAppDispatch();
-	if (userId) dispatch(getTasks({ userId }));
-	const tasks: TTask[] = useSelector(getTaskData);
-	const task = tasks.findLast(function (elem) {
-		return elem.id == Number(id);
-	});
+	const router = useRouter();
+	const { id } = router.query;
+	dispatch(getTaskById({ id: Number(id) }));
+	const task = useSelector(getCurrentTaskData)[0];
 	const [startDate, setStartDate] = useState<Date | null>(
 		task?.deadline || null
 	);
@@ -67,7 +62,6 @@ const TaskFull: FC<TasksProps> = ({ userId }) => {
 		console.log(oldTask);
 		dispatch(updateTask({ task: oldTask }));
 	};
-	console.log(tasks);
 	return (
 		<>
 			<div className={taskFullStyles['task-header']}>

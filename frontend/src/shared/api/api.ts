@@ -21,7 +21,7 @@ export const getUserTasksInfo = (id: number) =>
 		});
 
 export const getUserTaskByIdInfo = (id: number) =>
-	fetch(`${URL}/tasks/new?id=${id}`)
+	fetch(`${URL}/tasks/one?id=${id}`)
 		.then((res) => checkResponse<TTask[]>(res))
 		.then((data) => {
 			if (data) return data;

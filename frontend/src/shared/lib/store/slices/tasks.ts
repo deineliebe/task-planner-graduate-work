@@ -5,7 +5,8 @@ import {
 	getUserTasksInfo,
 	getLastTaskInfo,
 	addNewUserTask,
-	updateOldTask
+	updateOldTask,
+	getUserTaskByIdInfo
 } from '@/shared/api/api';
 import { constantsMap } from '@/shared/model/constants';
 import { TNewTask, TTask, TUpdateTask, TUserTask } from '@/shared/model/types';
@@ -14,12 +15,14 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 export type TTaskState = {
 	tasks: TTask[];
 	lastTask: TTask[];
+	currentTask: TTask[];
 	error: string | null | undefined;
 };
 
 export const initialTaskState: TTaskState = {
 	tasks: [],
 	lastTask: [],
+	currentTask: [],
 	error: null
 };
 
@@ -31,9 +34,9 @@ export const getTasks = createAsyncThunk(
 );
 
 export const getTaskById = createAsyncThunk(
-	'/tasks/get',
-	async (credentials: { userId: number }) => {
-		return await getUserTasksInfo(credentials.userId);
+	'/tasks/getById',
+	async (credentials: { id: number }) => {
+		return await getUserTaskByIdInfo(credentials.id);
 	}
 );
 
@@ -73,7 +76,8 @@ export const taskSlice = createSlice({
 	reducers: {},
 	selectors: {
 		getTaskData: (state) => state.tasks,
-		getLastTaskData: (state) => state.lastTask
+		getLastTaskData: (state) => state.lastTask,
+		getCurrentTaskData: (state) => state.currentTask
 	},
 	extraReducers: (builder) => {
 		builder
@@ -96,6 +100,17 @@ export const taskSlice = createSlice({
 			})
 			.addCase(getLastTask.fulfilled, (state, action) => {
 				state.lastTask = action.payload;
+				state.error = null;
+			})
+			.addCase(getTaskById.pending, (state) => {
+				state.currentTask = [];
+				state.error = null;
+			})
+			.addCase(getTaskById.rejected, (state, action) => {
+				state.error = action.error.message;
+			})
+			.addCase(getTaskById.fulfilled, (state, action) => {
+				state.currentTask = action.payload;
 				state.error = null;
 			})
 			.addCase(addTask.pending, (state) => {
@@ -131,6 +146,7 @@ export const taskSlice = createSlice({
 
 export const {} = taskSlice.actions;
 
-export const { getTaskData, getLastTaskData } = taskSlice.selectors;
+export const { getTaskData, getLastTaskData, getCurrentTaskData } =
+	taskSlice.selectors;
 export const taskReducer = taskSlice.reducer;
 export const taskName = taskSlice.name;
