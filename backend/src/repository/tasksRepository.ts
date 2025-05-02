@@ -58,6 +58,12 @@ export class tasksRepository {
   }
 
   async deleteTask(id: number) {
-    await this.repository.delete({ id: id });
+    await this.repository.query(`WITH deleted_parent AS (
+      DELETE FROM tasks
+      WHERE id = $1
+      RETURNING id
+    )
+    DELETE FROM user_tasks
+    WHERE task_id IN (SELECT id FROM deleted_parent);`, [id]);
   }
 }
