@@ -7,7 +7,8 @@ import {
 	addNewUserTask,
 	updateOldTask,
 	getUserTaskByIdInfo,
-	deleteOldTask
+	deleteOldTask,
+	deleteUserOldTask
 } from '@/shared/api/api';
 import { constantsMap } from '@/shared/model/constants';
 import { TNewTask, TTask, TUpdateTask, TUserTask } from '@/shared/model/types';
@@ -73,6 +74,13 @@ export const addUserTask = createAsyncThunk(
 	'/usersTasks/add',
 	async (userTask: TUserTask) => {
 		return await addNewUserTask(userTask);
+	}
+);
+
+export const removeUserTask = createAsyncThunk(
+	'/userTasks/delete',
+	async (credentials: { id: number }) => {
+		return await deleteUserOldTask(credentials.id);
 	}
 );
 

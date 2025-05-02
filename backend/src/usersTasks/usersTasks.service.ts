@@ -11,4 +11,8 @@ export class UsersTasksService {
     async addTask(data: UserTasksDTO) {
       return await this.repository.addTask(data);
     }
+  
+    async deleteTask(id: number) {
+      return await this.repository.deleteTask(id);
+    }
 }

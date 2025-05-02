@@ -1,4 +1,4 @@
-import { Controller, Body, Post } from '@nestjs/common';
+import { Controller, Body, Post, Query } from '@nestjs/common';
 import { UsersTasksService } from './usersTasks.service';
 import { UserTasksDTO } from './dto/usersTasks.dto';
 
@@ -9,5 +9,10 @@ export class UsersTasksController {
   @Post('/add')
   async create(@Body() data: UserTasksDTO) {
     return await this.userTasksService.addTask(data);
+  }
+
+  @Post('/delete')
+  async delete(@Query() id: number) {
+    return await this.userTasksService.deleteTask(id);
   }
 }

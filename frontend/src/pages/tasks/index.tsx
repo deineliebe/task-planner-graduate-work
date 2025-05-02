@@ -4,7 +4,8 @@ import { FC, useEffect, useState } from 'react';
 import {
 	getTaskData,
 	getTasks,
-	removeTask
+	removeTask,
+	removeUserTask
 } from '@/shared/lib/store/slices/tasks';
 import { TasksList } from '@/widgets/task-list';
 import { TaskSubHeader } from '@/widgets/task-subheader';
@@ -31,6 +32,7 @@ const Tasks: FC<TasksProps> = ({ userId }) => {
 	const tasks: TTask[] = useSelector(getTaskData);
 	const tasksIds: number[] = [];
 	const deleteTask = (id: number) => {
+		dispatch(removeUserTask({ id }));
 		dispatch(removeTask({ id }));
 	};
 	tasks.map((task) => tasksIds.push(task.id));

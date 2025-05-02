@@ -100,6 +100,20 @@ export const getUserInfo = (email: string, password: string) =>
 			return Promise.reject(data);
 		});
 
+export const deleteUserOldTask = (id: number) =>
+	fetch(`${URL}/userTasks/remove?id=${id}`, {
+		method: 'DELETE',
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8'
+		} as HeadersInit,
+		body: JSON.stringify(id)
+	})
+		.then((res) => checkResponse<TTasksResponse>(res))
+		.then((data) => {
+			if (data) return data;
+			return Promise.reject(data);
+		});
+
 export const api = {
 	getUserTasksInfo,
 	getLastTaskInfo,
@@ -107,5 +121,6 @@ export const api = {
 	updateOldTask,
 	deleteOldTask,
 	addNewTask,
-	getUserInfo
+	getUserInfo,
+	deleteUserOldTask
 };

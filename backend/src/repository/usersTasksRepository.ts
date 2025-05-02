@@ -13,4 +13,9 @@ export class usersTasksRepository {
       return this.repository.query(`INSERT INTO user_tasks(user_id, task_id)
         VALUES ($1, $2);`, [data.user_id, data.task_id]);
     }
+
+    async deleteTask(task_id: number) {
+      return this.repository.query(`DELETE FROM user_tasks
+        WHERE task_id = $1);`, [task_id]);
+    }
 }
