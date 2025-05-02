@@ -79,7 +79,7 @@ services:
   certbot:
     image: certbot/certbot:latest
     networks:
-      - webnet
+      - backend-network
     volumes:
       - ./certbot/www/:/var/www/certbot/:rw
       - ./certbot/conf/:/etc/letsencrypt/:rw
