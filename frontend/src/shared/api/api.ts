@@ -101,7 +101,7 @@ export const getUserInfo = (email: string, password: string) =>
 		});
 
 export const deleteUserOldTask = (id: number) =>
-	fetch(`${URL}/userTasks/remove?id=${id}`, {
+	fetch(`${URL}/userTasks/delete?id=${id}`, {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8'

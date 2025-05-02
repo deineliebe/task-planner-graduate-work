@@ -15,7 +15,6 @@ export class usersTasksRepository {
     }
 
     async deleteTask(task_id: number) {
-      return this.repository.query(`DELETE FROM user_tasks
-        WHERE task_id = $1);`, [task_id]);
+      return this.repository.query(`DELETE FROM user_tasks WHERE task_id = $1;`, [task_id]);
     }
 }
