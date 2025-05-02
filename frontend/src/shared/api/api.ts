@@ -107,7 +107,7 @@ export const getUserInfo = (email: string, password: string) =>
 		});
 
 export const updateUsersPasswordById = (data: TUserPasswordData) =>
-	fetch(`${URL}/user/getDataByEmail`, {
+	fetch(`${URL}/user/newPassword`, {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8'

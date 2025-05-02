@@ -28,7 +28,6 @@ const Settings: FC<SettingsProps> = ({ setShowModal, userId }) => {
 			oldPassword: oldPasswordRef.current?.value || '',
 			newPassword: newPasswordRef.current?.value || ''
 		};
-		console.log(userData);
 		dispatch(updateUsersPassword(userData));
 		setShowModal(false);
 	};

@@ -158,7 +158,6 @@ export const taskSlice = createSlice({
 				state.error = null;
 			})
 			.addCase(addUserTask.rejected, (state, action) => {
-				console.log(state);
 				state.error = action.error.message;
 			})
 			.addCase(addUserTask.fulfilled, (state) => {
