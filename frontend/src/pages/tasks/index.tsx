@@ -2,11 +2,9 @@
 /* eslint-disable import/no-unresolved */
 import { FC, useEffect, useState } from 'react';
 import {
-	addUserTask,
 	getTaskData,
 	getTasks,
-	removeTask,
-	removeUserTask
+	removeTask
 } from '@/shared/lib/store/slices/tasks';
 import { TasksList } from '@/widgets/task-list';
 import { TaskSubHeader } from '@/widgets/task-subheader';
