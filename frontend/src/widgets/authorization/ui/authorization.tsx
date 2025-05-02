@@ -7,6 +7,7 @@ import { FC, SyntheticEvent, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getData, getUser } from '@/shared/lib/store/slices/users';
 import { AppDispatch } from '@/shared/lib/store/store';
+import router from 'next/router';
 
 type AuthorizationProps = {
 	setUserId: (id: number | null) => void;
@@ -30,13 +31,18 @@ const Login: FC<AuthorizationProps> = ({ setUserId }) => {
 			email: emailRef.current?.value || '',
 			password: passwordRef.current?.value || ''
 		};
+		localStorage.setItem('userId', emailRef.current?.value || '');
 		if (emailRef.current) emailRef.current.value = '';
 		if (passwordRef.current) passwordRef.current.value = '';
 		dispatch(getUser(userData));
 	};
 	useEffect(() => {
 		if (userInfo?.id) {
+			localStorage.setItem('userId', userInfo.id.toString());
 			setUserId(userInfo.id);
+		}
+		if (router.pathname !== '/') {
+			router.push('/');
 		}
 	}, [setUserId, userInfo]);
 	return (

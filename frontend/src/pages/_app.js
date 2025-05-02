@@ -1,3 +1,5 @@
+/* eslint-disable eslint-comments/disable-enable-pair */
+/* eslint-disable import/no-unresolved */
 import { ThemeProvider } from 'next-themes';
 import { Provider } from 'react-redux';
 import { Rubik } from 'next/font/google';
@@ -21,6 +23,23 @@ const rubik = Rubik({
 export default function MyApp({ Component, pageProps }) {
 	const [userId, setUserId] = React.useState(null);
 	const [showAddSettingsModal, setShowAddSettingsModal] = React.useState(false);
+	const [isMounted, setIsMounted] = React.useState(false);
+	React.useEffect(() => {
+		setIsMounted(true);
+		if (typeof window !== 'undefined') {
+			const savedUserId = localStorage.getItem('userId');
+			if (savedUserId) setUserId(savedUserId);
+		}
+	}, []);
+	React.useEffect(() => {
+		if (typeof window !== 'undefined' && isMounted) {
+			if (userId) {
+				localStorage.setItem('userId', userId);
+			} else {
+				localStorage.removeItem('userId');
+			}
+		}
+	}, [userId, isMounted]);
 	return (
 		<div className={`${rubik.variable} ${styles.body} ${layout}`}>
 			<Head>

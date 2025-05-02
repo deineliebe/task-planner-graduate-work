@@ -43,21 +43,6 @@ const Settings: FC<SettingsProps> = ({ setShowModal }) => {
 					<fieldset className={`${formStyles['form-field']}`}>
 						<label
 							className={`${formStyles['form-label']}`}
-							htmlFor='settings_email'
-						>
-							E-mail
-						</label>
-						<input
-							type='text'
-							id='settings_email'
-							name='settings_email'
-							className={`${addTaskStyles['add-task-input']}`}
-							required
-						/>
-					</fieldset>
-					<fieldset className={`${formStyles['form-field']}`}>
-						<label
-							className={`${formStyles['form-label']}`}
 							htmlFor='settings_tg'
 						>
 							Новый пароль

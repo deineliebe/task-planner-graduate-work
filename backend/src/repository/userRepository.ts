@@ -15,11 +15,7 @@ export class userRepository {
     });
   }
 
-  async updateEmailById(id: number, email: string) {
-    await this.repository.update({ id: id }, { email: email });
-  }
-
-  async updatePasswordById(id: number, password: string) {
-    await this.repository.update({ id: id }, { password: password });
+  async updatePasswordById(id: number, oldPassword: string, newPassword: string) {
+    await this.repository.query(`UPDATE authorization_data SET password = $1 WHERE id = $2 AND password = $3`, [newPassword, id, oldPassword]);
   }
 }

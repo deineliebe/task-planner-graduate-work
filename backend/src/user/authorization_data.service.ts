@@ -15,11 +15,7 @@ export class UserService {
     return userInfo;
   }
 
-  async updateEmailById(id: number, email: string) {
-    return await this.repository.updateEmailById(id, email);
-  }
-
-  async updatePasswordById(id: number, password: string) {
-    return await this.repository.updateEmailById(id, password);
+  async updatePasswordById(id: number, oldPassword: string, newPassword: string) {
+    return await this.repository.updatePasswordById(id, oldPassword, newPassword);
   }
 }

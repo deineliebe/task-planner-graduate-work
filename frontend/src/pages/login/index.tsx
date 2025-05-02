@@ -1,3 +1,5 @@
+/* eslint-disable eslint-comments/disable-enable-pair */
+/* eslint-disable import/no-unresolved */
 import { FC, useState } from 'react';
 import styles from '../../shared/ui/styles.module.css';
 import buttonStyles from '../../shared/ui/button.module.css';

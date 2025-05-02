@@ -10,13 +10,8 @@ export class UserController {
     return await this.userService.getUser(email, password);
   }
 
-  @Put('/newEmail')
-  async updateEmail(@Body() id: number, email: string) {
-    return await this.userService.updateEmailById(id, email);
-  }
-
   @Put('/newPassword')
-  async updatePassword(@Body() id: number, password: string) {
-    return await this.userService.updatePasswordById(id, password);
+  async updatePassword(@Body() id: number, oldPassword: string, newPassword: string) {
+    return await this.userService.updatePasswordById(id, oldPassword, newPassword);
   }
 }

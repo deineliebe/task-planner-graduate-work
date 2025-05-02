@@ -32,6 +32,7 @@ const Header: FC<HeaderProps> = ({
 							className={`${buttonStyles.button} ${buttonStyles.buttonTransparent} ${buttonStyles.isShadowed} ${styles.isClicked}`}
 							onClick={(evt) => {
 								evt.preventDefault();
+								localStorage.setItem('userId', '');
 								setUserId(null);
 							}}
 						>
