@@ -8,7 +8,7 @@ import {
 } from '../model/types';
 import { TTasksResponse } from './types';
 
-const URL = 'http://app.smalltaskplanner.ru/api';
+const URL = 'https://app.smalltaskplanner.ru/api';
 
 const checkResponse = <T>(res: Response): Promise<T> =>
 	res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
